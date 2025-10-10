@@ -7,12 +7,32 @@ public static class MongoManager
 {
     private static MongoContext? context;
 
-    public static Task InitServer()
+    public static async Task InitServer()
     {
-        context = new MongoContext("mongodb://localhost:27017", "roggyPerseus");
-        Console.WriteLine("Connexion MongoDB initialisée\n");
-        return Task.CompletedTask;
+        try
+        {
+            context = new MongoContext("mongodb://localhost:27017", "roggyPerseus");
+
+            await context.Db.RunCommandAsync<MongoDB.Bson.BsonDocument>(new MongoDB.Bson.BsonDocument("ping", 1));
+
+            Console.WriteLine("Connexion MongoDB initialisée avec succès.\n");
+        }
+        catch (MongoDB.Driver.MongoConnectionException ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Erreur : impossible de se connecter à MongoDB.");
+            Console.WriteLine($"Détails : {ex.Message}\n");
+            Console.ResetColor();
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Une erreur inattendue est survenue lors de l'initialisation de MongoDB.");
+            Console.WriteLine($"Détails : {ex.Message}\n");
+            Console.ResetColor();
+        }
     }
+
 
     public static async Task CreateProfile(string username, string password)
     {
@@ -20,6 +40,7 @@ public static class MongoManager
             throw new InvalidOperationException("MongoManager n'est pas initialisé.");
 
         var existing = await context.Profiles.Find(p => p.Username == username).FirstOrDefaultAsync();
+
         if (existing != null)
         {
             Console.WriteLine("Ce nom d'utilisateur est déjà pris\n");
@@ -58,6 +79,23 @@ public static class MongoManager
 
         return valid ? profile : null;
     }
+
+    public static async Task<ProfileDoc?> GetProfile(string username)
+    {
+        if (context == null)
+            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
+
+        var profile = await context.Profiles
+        .Find(p => p.Username == "Alice")
+        .FirstOrDefaultAsync();
+
+        if (profile != null)
+        {
+            Console.WriteLine($"ID dans la base : {profile.Id}");
+        }
+
+        return profile;
+    }
 }
 
 public class MongoContext
@@ -76,23 +114,3 @@ public class MongoContext
         Db = client.GetDatabase(dbName);
     }
 }
-
-public class ProfileDoc
-{
-    [BsonId]
-    public string Id { get; set; } = default!;
-    public string Username { get; set; } = default!;
-    public string PasswordHash { get; set; } = default!;
-    public string PasswordSalt { get; set; } = default!;
-    public int Iterations { get; set; } = 100_000;
-    public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
-}
-
-//public class SaveDoc
-//{
-//    [BsonId]
-//    public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
-//    public string Username { get; set; } = default!;
-//    public int Score { get; set; } = 0;
-//    public DateTime UpdatedUtc { get; set; } = DateTime.UtcNow;
-//}

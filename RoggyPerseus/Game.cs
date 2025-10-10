@@ -3,31 +3,41 @@ using System.Text.Json;
 
 class Game
 {
+    private static int data_id;
+
+    private static ProfileDoc profile = new ProfileDoc();
+    private static PlayerStats stats = new PlayerStats();
+    private static SaveFile saveFile = new SaveFile();
+
     private static int coin;
 
-    static void Main()
+    public static async Task game()
     {
-        Connexion();
-        //Menu();
+        await Connexion();
     }
 
-    private static void Connexion()
+    private static async Task Connexion()
     {
         Console.Write(
         "\n--Connexion--" +
         "\n1 - Connexion" +
         "\n2 - Create Account" +
         "\n3 - Quit\n");
-
-        int choice = int.Parse(Console.ReadLine());
+        
+        int choice = int.Parse(Console.ReadLine() ?? "");
 
         if (choice == 1)
         {
             //Connexion
+            await AccountManager.LoadProfile();
+            profile = AccountManager.CurrentProfile101;
+            GameMenu();
         }
         else if (choice == 2)
         {
             //Create Account
+            await AccountManager.CreateNewProfile();
+            await Connexion();
         }
         else if (choice == 3)
         {
@@ -38,43 +48,45 @@ class Game
         else
         {
             Console.WriteLine("Choose a number between 1 and 3.");
-            Connexion();
+            await Connexion();
         }
     }
 
-    private static void Menu()
+    private static void GameMenu()
     {
         Console.Write(
         "\n--MENU--" +
-        "\n1 - New Game" +
-        "\n2 - Continue" +
-        "\n4 - Save" +
+        $"\n-save {saveFile.localDataId}-" +
+        "\n1 - Play" +
+        "\n2 - Change Save" +
+        "\n3 - Leaderboard" +
         "\n5 - Quit\n");
 
-        int choice = int.Parse(Console.ReadLine());
+        int choice = int.Parse(Console.ReadLine() ?? "");
 
         if (choice == 1)
         {
-            //Start New game
+            //Play
             PlayGame();
 
         }
         else if (choice == 2)
         {
-            //Continue
-            PlayGame();
+            //Change Save
+            ChangeSave();
+
         }
         else if (choice == 3)
         {
             //Stats
             Console.WriteLine($"You have {coin} coins.\n");
-            Menu();
+            GameMenu();
 
         }
         else if (choice == 4)
         {
             //Save
-
+            //JsonSaveLoad.SaveGame(profile.Id, saveFile.localDataId, stats);
         }
         else if (choice == 5)
         {
@@ -85,7 +97,7 @@ class Game
         else
         {
             Console.WriteLine("Choose a number between 1 and 5.");
-            Menu();
+            GameMenu();
         }
     }
 
@@ -104,14 +116,35 @@ class Game
 
             if (key.Key == ConsoleKey.S)
             {
-
+                
             }
             else if (key.Key == ConsoleKey.Q)
             {
-                Menu();
+                GameMenu();
             }
             else { AddOneCoin(); }
         }
     }
+    
+    private static void ChangeSave()
+    {
+        Console.WriteLine("SAves veese svera");
+        Console.WriteLine("--Saves--\n" +
+                          "Save 1 : INFO SUR LA SAVE\n" +
+                          "Save 2 : INFO SUR LA SAVE\n" +
+                          "Save 3 : INFO SUR LA SAVE\n" +
+                          "Choose a Save : ");
+        int saveChoice = int.Parse(Console.ReadLine() ?? "");
 
+        if (saveChoice == 1 || saveChoice == 2 || saveChoice == 3)
+        {
+            saveFile.localDataId = saveChoice;
+            GameMenu();
+        }
+        else
+        {
+            Console.WriteLine("Choose a number between 1 and 3.");
+            ChangeSave();
+        }
+    }
 }

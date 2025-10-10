@@ -6,12 +6,12 @@ public class JsonSaveLoad
 {
     private static readonly string saveFilePath = "savefile.json";
 
-    public static void SaveGame(string userId, string localDataId, PlayerStats stats)
+    public static void SaveGame(string userId, int localDataId, PlayerStats stats)
     {
         SaveFile saveFileData = new SaveFile
         {
-            UserId = userId,
-            LocalDataId = localDataId,
+            userId = userId,
+            localDataId = localDataId,
             PlayerStats = stats
         };
 
@@ -28,7 +28,7 @@ public class JsonSaveLoad
             string json = File.ReadAllText(saveFilePath);
             SaveFile data = JsonSerializer.Deserialize<SaveFile>(json);
 
-            Console.WriteLine($"✅ Game loaded. User ID: {data.UserId}, Local ID: {data.LocalDataId}");
+            Console.WriteLine($"✅ Game loaded. User ID: {data.userId}, Local ID: {data.localDataId}");
             return data;
         }
         else

@@ -1,8 +1,8 @@
 ﻿public class SaveFile
 {
-    public string UserId { get; set; }
-    public string LocalDataId { get; set; }
-    public PlayerStats PlayerStats { get; set; }
+    public string userId { get; set; } = default!;
+    public int localDataId { get; set; } = 1;
+    public PlayerStats PlayerStats { get; set; } = new PlayerStats();
 }
 
 public class PlayerStats
