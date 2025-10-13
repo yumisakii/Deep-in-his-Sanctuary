@@ -9,8 +9,6 @@ class Game
     private static PlayerStats stats = new PlayerStats();
     private static SaveFile saveFile = new SaveFile();
 
-    private static int coin;
-
     public static async Task game()
     {
         await Connexion();
@@ -23,8 +21,8 @@ class Game
         "\n1 - Connexion" +
         "\n2 - Create Account" +
         "\n3 - Quit\n");
-        
-        int choice = int.Parse(Console.ReadLine() ?? "");
+
+        int choice = MakeChoice();
 
         if (choice == 1)
         {
@@ -62,7 +60,7 @@ class Game
         "\n3 - Leaderboard" +
         "\n5 - Quit\n");
 
-        int choice = int.Parse(Console.ReadLine() ?? "");
+        int choice = MakeChoice();
 
         if (choice == 1)
         {
@@ -79,7 +77,7 @@ class Game
         else if (choice == 3)
         {
             //Stats
-            Console.WriteLine($"You have {coin} coins.\n");
+            Console.WriteLine($"You have {stats.Coins} coins.\n");
             GameMenu();
 
         }
@@ -103,20 +101,32 @@ class Game
 
     private static void AddOneCoin()
     {
-        coin++;
+        stats.Coins++;
     }
 
     private static void PlayGame()
     {
-        JsonSaveLoad.LoadGame();
+        var load = JsonSaveLoad.LoadGame(saveFile.localDataId);
+        if (load != null)
+        {
+            saveFile = load;
+            stats = saveFile.PlayerStats;
+        }
+        else
+        {
+            saveFile = new SaveFile();
+            stats = saveFile.PlayerStats;
+        }
+
         while (true)
         {
-            Console.Write($"Coins : {coin}\n");
-            Console.WriteLine("Press a button to add a coin,Q to quit.\n");
+            Console.Write($"Coins : {stats.Coins}\n");
+            Console.WriteLine("Press a button to add a coin, press Q to quit.\n");
             ConsoleKeyInfo key = Console.ReadKey();
-            
+
             if (key.Key == ConsoleKey.Q)
             {
+                JsonSaveLoad.SaveGame(profile.Id, saveFile.localDataId, stats);
                 GameMenu();
             }
             else { AddOneCoin(); }
@@ -143,5 +153,21 @@ class Game
             Console.WriteLine("Choose a number between 1 and 3.");
             ChangeSave();
         }
+    }
+
+    private static int MakeChoice()
+    {
+        int choice;
+        while (true)
+        {
+            Console.Write("Entrez un nombre : ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out choice))
+                break;
+
+            Console.WriteLine("Veuillez entrez un chiffre.");
+        }
+        return choice;
     }
 }
