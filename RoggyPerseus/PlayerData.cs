@@ -1,6 +1,7 @@
-﻿public class SaveFile
+﻿using MongoDB.Bson;
+public class SaveFile
 {
-    public string userId { get; set; } = default!;
+    public ObjectId userId { get; set; } = default!;
     public int localDataId { get; set; } = 1;
     public PlayerStats PlayerStats { get; set; } = new PlayerStats();
 }

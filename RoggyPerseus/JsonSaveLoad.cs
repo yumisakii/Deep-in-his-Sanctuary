@@ -1,14 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
+﻿using MongoDB.Bson;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 public class JsonSaveLoad
 {
     private static readonly string saveFilePath = "savefile.json";
 
-    public static void SaveGame(string userId, int localDataId, PlayerStats stats)
+    public static void SaveGame(ObjectId userId, int localDataId, PlayerStats stats)
     {
         List<SaveFile> allSaves = new();
 

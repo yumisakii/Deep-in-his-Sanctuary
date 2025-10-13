@@ -2,10 +2,13 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using RoggyPerseus;
+using System.Security.Cryptography;
 
 public static class MongoManager
 {
     private static MongoContext? context;
+
+    private static Random rnd = new Random();
 
     public static async Task InitServer()
     {
@@ -33,7 +36,6 @@ public static class MongoManager
         }
     }
 
-
     public static async Task CreateProfile(string username, string password)
     {
         if (context == null)
@@ -51,8 +53,9 @@ public static class MongoManager
 
         var newProfile = new ProfileDoc
         {
-            Id = ObjectId.GenerateNewId().ToString(),
+            Id = ObjectId.GenerateNewId(),
             Username = username,
+            Score = rnd.Next(0, 100),
             PasswordHash = hashB64,
             PasswordSalt = saltB64,
             Iterations = 100_000,
@@ -80,21 +83,33 @@ public static class MongoManager
         return valid ? profile : null;
     }
 
-    public static async Task<ProfileDoc?> GetProfile(string username)
+    public static async Task<List<ProfileDoc>> GetLeaderboardProfiles()
     {
         if (context == null)
-            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
-
-        var profile = await context.Profiles
-        .Find(p => p.Username == "Alice")
-        .FirstOrDefaultAsync();
-
-        if (profile != null)
-        {
-            Console.WriteLine($"ID dans la base : {profile.Id}");
+        { 
+            Console.WriteLine("❌ MongoManager n'est pas initialisé.");
+            return new List<ProfileDoc>();
         }
 
-        return profile;
+        try
+        {
+            Console.WriteLine("Récupération des profils pour le leaderboard...");
+
+            // Récupère tous les profils triés par score décroissant
+            var profiles = await context.Profiles
+                .Find(FilterDefinition<ProfileDoc>.Empty)
+                .SortByDescending(p => p.Score)
+                .ToListAsync();
+
+            Console.WriteLine($"{profiles.Count} profils récupérés.");
+            return profiles;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Erreur inattendue : {ex.Message}");
+        }
+
+        return new List<ProfileDoc>();
     }
 }
 
