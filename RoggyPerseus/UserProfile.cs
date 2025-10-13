@@ -1,10 +1,12 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 public class ProfileDoc
 {
     [BsonId]
-    public string Id { get; set; } = default!;
+    public ObjectId Id { get; set; }
     public string Username { get; set; } = default!;
+    public int Score { get; set; } = 0;
     public string PasswordHash { get; set; } = default!;
     public string PasswordSalt { get; set; } = default!;
     public int Iterations { get; set; } = 100_000;

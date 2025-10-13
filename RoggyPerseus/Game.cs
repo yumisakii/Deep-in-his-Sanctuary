@@ -31,7 +31,7 @@ class Game
             //Connexion
             await AccountManager.LoadProfile();
             profile = AccountManager.CurrentProfile101;
-            GameMenu();
+            await GameMenu();
         }
         else if (choice == 2)
         {
@@ -52,7 +52,7 @@ class Game
         }
     }
 
-    private static void GameMenu()
+    private static async Task GameMenu()
     {
         Console.Write(
         "\n--MENU--" +
@@ -78,9 +78,17 @@ class Game
         }
         else if (choice == 3)
         {
-            //Stats
-            Console.WriteLine($"You have {coin} coins.\n");
-            GameMenu();
+            // Leaderboard
+            var leaderboard = await MongoManager.GetLeaderboardProfiles();
+
+            Console.WriteLine("\n--- LEADERBOARD ---");
+            int rank = 1;
+            foreach (var p in leaderboard)
+            {
+                Console.WriteLine($"{rank++}. {p.Username} - {p.Score}");
+            }
+
+            await GameMenu();
 
         }
         else if (choice == 4)
@@ -97,7 +105,7 @@ class Game
         else
         {
             Console.WriteLine("Choose a number between 1 and 5.");
-            GameMenu();
+            await GameMenu();
         }
     }
 
