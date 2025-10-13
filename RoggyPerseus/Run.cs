@@ -4,27 +4,33 @@ using System.Threading;
 class Run
 {
     private static List<Monster> monsters = new List<Monster>();
-    private static Monster wolf = new Monster { Name = "Wolf", hp = 10 };
-    private static Monster ork = new Monster { Name = "Ork", hp = 10 };
-    private static Monster lich = new Monster { Name = "lich", hp = 10 };
 
     public static void newRun()
     {
+        CombatFunc.InitAllMonsters();
 
-        combatRoom();
+
+        Console.WriteLine("You enter ROOM 1");
         combatRoom();
 
+        Console.WriteLine("You enter ROOM 2");
+        combatRoom();
+
+        Console.WriteLine("You enter ROOM 3");
         forgeRoom();
 
+        Console.WriteLine("You enter ROOM 4");
         bossRoom();
     }
 
     private static void combatRoom()
     {
+
         //A RANDOMISER
-        monsters.Add(wolf);
-        monsters.Add(ork);
-        monsters.Add(lich);
+        monsters.Clear();
+        monsters.Add(CombatFunc.GetRandomMonster());
+        monsters.Add(CombatFunc.GetRandomMonster());
+        monsters.Add(CombatFunc.GetRandomMonster());
 
         while (monsters.Count > 0)
         {
@@ -38,11 +44,11 @@ class Run
             switch (choice)
             {
                 case 1:
-                    /// ça bug ici
-                    Console.WriteLine($"Choose who to attack :\n" +
-                                      $"1 - {monsters[0].Name}\n" +
-                                      $"2 - {monsters[1].Name}\n" +
-                                      $"3 - {monsters[2].Name}\n");
+                    Console.WriteLine($"Choose who to attack :");
+                    for (int i = 0; i < monsters.Count; i++)
+                    {
+                        Console.WriteLine($"{i+1} - {monsters[i].Name}");
+                    }
 
                     int target = MakeChoice(3);
 

@@ -86,7 +86,7 @@ public static class MongoManager
     public static async Task<List<ProfileDoc>> GetLeaderboardProfiles()
     {
         if (context == null)
-        { 
+        {
             Console.WriteLine("❌ MongoManager n'est pas initialisé.");
             return new List<ProfileDoc>();
         }
