@@ -1,13 +1,14 @@
 
 ﻿namespace RoggyPerseus
 {
-    internal class Program
+    class Program
     {
         static async Task Main()
         {
             await MongoManager.InitServer();
 
-            await Game.game();
+            //await PreGame.preGame();
+            Game.game();
         }
     }
 }
