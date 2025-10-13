@@ -108,17 +108,14 @@ class Game
 
     private static void PlayGame()
     {
+        JsonSaveLoad.LoadGame();
         while (true)
         {
             Console.Write($"Coins : {coin}\n");
-            Console.WriteLine("Press a button to add a coin, press S to save and Q to quit.\n");
+            Console.WriteLine("Press a button to add a coin,Q to quit.\n");
             ConsoleKeyInfo key = Console.ReadKey();
-
-            if (key.Key == ConsoleKey.S)
-            {
-                
-            }
-            else if (key.Key == ConsoleKey.Q)
+            
+            if (key.Key == ConsoleKey.Q)
             {
                 GameMenu();
             }
