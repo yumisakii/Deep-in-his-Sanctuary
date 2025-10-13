@@ -8,7 +8,7 @@ namespace RoggyPerseus
 {
     internal class Monster
     {
-        public string Name { get; set; } = "baseMonster101";
+        public string Name { get; set; } = "baseMonster";
         public int hp { get; set; }
     }
 }

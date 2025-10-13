@@ -15,9 +15,11 @@ namespace RoggyPerseus
             Console.WriteLine($"You attacked the {monster.Name} for 10 damage.\n");
         }
 
-        public static void UseSkill()
+        public static void UseSkill(List<Monster> monsters, int skillTarget)
         {
+            Monster monster = monsters[skillTarget];
 
+            
         }
 
         public static void UseItem()
