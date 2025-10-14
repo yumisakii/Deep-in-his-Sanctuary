@@ -14,8 +14,6 @@ namespace RoggyPerseus
 
 
 
-
-
         public static void InitAllMonsters()
         {
             Run.AllMonsters.Clear();

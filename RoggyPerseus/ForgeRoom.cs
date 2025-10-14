@@ -11,8 +11,6 @@ namespace RoggyPerseus
     {
         public static void forgeRoom()
         {
-            InitAllFusions();
-
             Dialogue(1);
             WeaponChoices();
         }
@@ -24,6 +22,7 @@ namespace RoggyPerseus
                 Console.WriteLine("Bienvenue dans la forge...\n" +
                                   "Veuillez choisir 2 armes à fusionner\n");
             }
+
             else if (step == 2 && forgedWeapon != null)
             {
                 Console.WriteLine("Très bien je te fusionne ces deux armes");
@@ -46,75 +45,40 @@ namespace RoggyPerseus
         {
             for (int i = 0; i < Run.weapons.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. " + Run.weapons[i].Name);
+                Console.WriteLine($"{i + 1} - " + Run.weapons[i].Name);
             }
 
             Console.WriteLine();
 
             int choice1 = Run.MakeChoice(Run.weapons.Count);
             Weapon chosenWeapon1 = Run.weapons[choice1 - 1];
-            Console.Write($"Tu as choisi l'arme {chosenWeapon1.Name} et ");
+            Console.Write($"You choose the weapon '{chosenWeapon1.Name}' and ");
 
             int choice2 = Run.MakeChoice(Run.weapons.Count);
             Weapon chosenWeapon2 = Run.weapons[choice2 - 1];
-            Console.WriteLine($"{chosenWeapon2.Name}\n");
+            Console.WriteLine($"'{chosenWeapon2.Name}'.\n");
 
-            Weapon? forgedWeapon = GetFusion(chosenWeapon1, chosenWeapon2);
+            FusedWeapon fusedWeapon = FuseWeapons(chosenWeapon1, chosenWeapon2);
+            Console.WriteLine($"You got a new Fused Weapon : '{fusedWeapon.Name}' !");
 
-            if (forgedWeapon != null)
-                Dialogue(2, forgedWeapon);
-            else
-                Console.WriteLine("Erreur: Fusion non trouvée");
+            Run.weapons.Add(fusedWeapon);
+            Run.weapons.Remove(chosenWeapon1);
+            Run.weapons.Remove(chosenWeapon2);
+            Weapon.SelectCurrentWeapon();
         }
 
-        private static Dictionary<string, Weapon> fusions = new Dictionary<string, Weapon>();
-
-        private static void InitAllFusions()
+        private static FusedWeapon FuseWeapons(Weapon w1, Weapon w2)
         {
-            fusions.Clear();
+            FusedWeapon fusedWeapon = new FusedWeapon {
+                Name = $"{w1.Name}-{w2.Name}",
+                Damage = (w1.Damage + w2.Damage)*0.75f,
+                skill = new FusedSkill {
+                    Damage = (w1.skill.Damage + w1.skill.Damage)*0.75f,
+                    IsAOE = w1.skill.IsAOE || w2.skill.IsAOE,
+                }
+            };
 
-            // Liste des armes de base
-            var baseWeapons = Run.weapons.Where(w => w.Name == "Sword" || w.Name == "MasterSword" || w.Name == "GutsSword").ToList();
-
-            // Fonction pour ajouter une fusion et sa version inverse
-            static void AddFusion(Weapon w1, Weapon w2, string fusionName)
-            {
-                var fused = new Weapon { Name = fusionName, Damage = w1.Damage + w2.Damage };
-                fusions[$"{w1.Name}|{w2.Name}"] = fused;
-                fusions[$"{w2.Name}|{w1.Name}"] = fused; // clé inverse
-            }
-
-            // Toutes les combinaisons différentes
-            AddFusion(baseWeapons[0], baseWeapons[1], "Mega MasterSword");
-            AddFusion(baseWeapons[0], baseWeapons[2], "Mega GutsSword");
-            AddFusion(baseWeapons[1], baseWeapons[2], "Guts MasterSword");
-
-            // Fusions avec elles-mêmes
-            foreach (var w in baseWeapons)
-            {
-                fusions[$"{w.Name}|{w.Name}"] = new Weapon
-                {
-                    Name = w.Name switch
-                    {
-                        "Sword" => "Big Sword",
-                        "MasterSword" => "Mega MasterSword",
-                        "GutsSword" => "Giga GutsSword",
-                        _ => $"{w.Name}-{w.Name} Fusion"
-                    },
-                    Damage = w.Damage * 2
-                };
-            }
-        }
-
-        private static Weapon? GetFusion(Weapon w1, Weapon w2)
-        {
-            string key1 = $"{w1.Name}|{w2.Name}";
-            string key2 = $"{w2.Name}|{w1.Name}"; // pour gérer l'ordre inverse
-
-            if (fusions.ContainsKey(key1)) return fusions[key1];
-            if (fusions.ContainsKey(key2)) return fusions[key2];
-
-            return null;
+            return fusedWeapon;
         }
     }
 }

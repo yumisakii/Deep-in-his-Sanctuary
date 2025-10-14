@@ -15,10 +15,6 @@ class Run
         Monster.InitAllMonsters();
         Weapon.InitAllWeapons();
 
-        weapons.Add(new Weapon { Name = "Sword" });
-        weapons.Add(new Weapon { Name = "MasterSword" });
-        weapons.Add(new Weapon { Name = "GutsSword" });
-
         Console.WriteLine("You enter ROOM 1");
         CombatRoom.combatRoom();
 

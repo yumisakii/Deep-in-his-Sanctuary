@@ -22,6 +22,27 @@ namespace RoggyPerseus
             Run.AllWeapons.Add(new Weapon { Name = "Poisoned dagger"});
             Run.AllWeapons.Add(new Weapon { Name = "Rocky Axe"});
         }
+        public static void SelectCurrentWeapon()
+        {
+            if (Run.weapons.Count <= 1)
+            {
+                Run.currentWeapon = Run.weapons[0];
+                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
+            }
+            else
+            {
+                Console.WriteLine("Select the weapon you want to use :\n");
+                for (int i = 0; i < Run.weapons.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1} - {Run.weapons[i].Name}");
+                }
+
+                int weaponChoosed = Run.MakeChoice(Run.weapons.Count);
+
+                Run.currentWeapon = Run.weapons[weaponChoosed - 1];
+                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
+            }
+        }
     }
 
     class Skill
@@ -29,5 +50,15 @@ namespace RoggyPerseus
         public string Name { get; set; } = "defaultSkill";
         public float Damage { get; set; } = 10f;
         public bool IsAOE { get; set; } = true;
+    }
+
+    class FusedWeapon : Weapon
+    {
+        
+    }
+
+    class FusedSkill : Skill
+    {
+
     }
 }
