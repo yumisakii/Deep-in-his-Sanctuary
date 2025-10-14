@@ -61,7 +61,7 @@ namespace RoggyPerseus
 
                 for (int i = Run.monsters.Count - 1; i >= 0; i--)
                 {
-                    if (Run.monsters[i].hp <= 0)
+                    if (Run.monsters[i].Hp <= 0)
                     {
                         Console.WriteLine($"You defeated {Run.monsters[i].Name}!");
                         Run.monsters.RemoveAt(i);

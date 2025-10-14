@@ -8,7 +8,7 @@
 
         UpgradeCharacter();
 
-        Run.newRun();
+        Run.NewRun();
     }
 
     private static void GameIntro()

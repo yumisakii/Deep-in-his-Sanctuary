@@ -10,7 +10,7 @@ namespace RoggyPerseus
     {
         public static void Attack(Monster monster, Weapon weapon)
         {
-            monster.hp -= weapon.Damage;
+            monster.Hp -= weapon.Damage;
             Console.WriteLine($"You attacked the {monster.Name} for 10 damage.\n");
         }
 
@@ -22,12 +22,12 @@ namespace RoggyPerseus
             {
                 foreach (Monster m in monsters)
                 {
-                    m.hp -= skill.Damage;
+                    m.Hp -= skill.Damage;
                 }
             }
             else
             {
-                monster.hp -= skill.Damage;
+                monster.Hp -= skill.Damage;
             }
         }
 
