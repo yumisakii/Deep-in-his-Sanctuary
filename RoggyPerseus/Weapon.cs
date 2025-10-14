@@ -9,15 +9,25 @@ namespace RoggyPerseus
     class Weapon
     {
         public string Name { get; set; } = "defaultWeapon";
-        public float Damage { get; set; } = 0f;
+        public float Damage { get; set; } = 10f;
 
         public Skill skill { get; set; } = new Skill();
+
+
+        public static void InitAllWeapons()
+        {
+            Run.AllWeapons.Clear();
+
+            Run.AllWeapons.Add(new Weapon { Name = "Fire Katana"});
+            Run.AllWeapons.Add(new Weapon { Name = "Poisoned dagger"});
+            Run.AllWeapons.Add(new Weapon { Name = "Rocky Axe"});
+        }
     }
 
     class Skill
     {
         public string Name { get; set; } = "defaultSkill";
-        public float Damage { get; set; } = 0f;
-        public bool IsAOE { get; set; } = false;
+        public float Damage { get; set; } = 10f;
+        public bool IsAOE { get; set; } = true;
     }
 }

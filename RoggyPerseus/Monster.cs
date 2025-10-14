@@ -9,6 +9,24 @@ namespace RoggyPerseus
     internal class Monster
     {
         public string Name { get; set; } = "baseMonster";
-        public int hp { get; set; }
+        public float hp { get; set; }
+        
+
+
+
+
+
+        public static void InitAllMonsters()
+        {
+            Run.AllMonsters.Clear();
+            // repeat 3 times for double monsters
+            for (int i = 0; i < 3; i++)
+            {
+                Run.AllMonsters.Add(new Monster { Name = "Wolf", hp = 10 });
+                Run.AllMonsters.Add(new Monster { Name = "Ork", hp = 10 });
+                Run.AllMonsters.Add(new Monster { Name = "lich", hp = 10 });
+            }
+
+        }
     }
 }

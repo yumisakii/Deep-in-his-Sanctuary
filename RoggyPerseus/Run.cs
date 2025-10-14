@@ -3,17 +3,22 @@ using System.Threading;
 
 class Run
 {
+    public static List<Monster> AllMonsters = new List<Monster>();
     public static List<Monster> monsters = new List<Monster>();
+
+    public static List<Weapon> AllWeapons = new List<Weapon>();
     public static List<Weapon> weapons = new List<Weapon>();
     public static Weapon currentWeapon = new Weapon();
 
     public static void newRun()
     {
-        CombatFunc.InitAllMonsters();
+        Monster.InitAllMonsters();
+        Weapon.InitAllWeapons();
 
 
         Console.WriteLine("You enter ROOM 1");
         CombatRoom.combatRoom();
+
 
         Console.WriteLine("You enter ROOM 2");
         CombatRoom.combatRoom();

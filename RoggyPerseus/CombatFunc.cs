@@ -8,39 +8,49 @@ namespace RoggyPerseus
 {
     internal class CombatFunc
     {
-        private static List<Monster> AllMonsters = new List<Monster>();
-        public static void Attack(Monster monster)
+        public static void Attack(Monster monster, Weapon weapon)
         {
-            monster.hp -= 10;
+            monster.hp -= weapon.Damage;
             Console.WriteLine($"You attacked the {monster.Name} for 10 damage.\n");
         }
 
-        public static void UseSkill(List<Monster> monsters, int skillTarget)
+        public static void UseSkill(List<Monster> monsters, int skillTarget, Skill skill)
         {
             Monster monster = monsters[skillTarget];
 
-            
-        }
-
-        public static void UseItem()
-        {
-
-        }
-
-        public static void InitAllMonsters()
-        {
-            AllMonsters.Clear();
-            AllMonsters.Add(new Monster { Name = "Wolf", hp = 10 });
-            AllMonsters.Add(new Monster { Name = "Ork", hp = 10 });
-            AllMonsters.Add(new Monster { Name = "lich", hp = 10 });
+            if (skill.IsAOE == true)
+            {
+                foreach (Monster m in monsters)
+                {
+                    m.hp -= skill.Damage;
+                }
+            }
+            else
+            {
+                monster.hp -= skill.Damage;
+            }
         }
 
         public static Monster GetRandomMonster()
         {
             Random random = new Random();
-            int index = random.Next(AllMonsters.Count);
+            int index = random.Next(Run.AllMonsters.Count);
 
-            return AllMonsters[index];
+            Monster monsterToReturn = Run.AllMonsters[index];
+            Run.AllMonsters.Remove(Run.AllMonsters[index]);
+
+            return monsterToReturn;
+        }
+
+        public static Weapon GetRandomWeapon()
+        {
+            Random random = new Random();
+            int index = random.Next(Run.AllWeapons.Count);
+
+            Weapon weaponToReturn = Run.AllWeapons[index];
+            Run.AllWeapons.Remove(Run.AllWeapons[index]);
+
+            return weaponToReturn;
         }
     }
 }

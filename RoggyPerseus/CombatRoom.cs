@@ -12,6 +12,7 @@ namespace RoggyPerseus
         {
             fight();
             loot();
+            selectCurrentWeapon();
         }
 
         private static void fight()
@@ -25,10 +26,9 @@ namespace RoggyPerseus
             {
                 Console.WriteLine($"You're facing {Run.monsters.Count} monsters.\n" +
                                    "1 - Attack\n" +
-                                   "2 - Use Skill\n" +
-                                   "3 - Use Item\n");
+                                   "2 - Use Skill\n");
 
-                int choice = Run.MakeChoice(3);
+                int choice = Run.MakeChoice(2);
 
                 switch (choice)
                 {
@@ -39,9 +39,9 @@ namespace RoggyPerseus
                             Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
                         }
 
-                        int attackTarget = Run.MakeChoice(3);
+                        int attackTarget = Run.MakeChoice(Run.monsters.Count);
 
-                        CombatFunc.Attack(Run.monsters[attackTarget - 1]);
+                        CombatFunc.Attack(Run.monsters[attackTarget - 1], Run.currentWeapon);
                         break;
 
                     case 2:
@@ -53,13 +53,11 @@ namespace RoggyPerseus
 
                         int skillTarget = Run.MakeChoice(3);
 
-                        CombatFunc.UseSkill(Run.monsters, skillTarget);
-                        break;
-
-                    case 3:
-                        CombatFunc.UseItem();
+                        CombatFunc.UseSkill(Run.monsters, skillTarget, Run.currentWeapon.skill);
                         break;
                 }
+
+                
 
                 for (int i = Run.monsters.Count - 1; i >= 0; i--)
                 {
@@ -74,7 +72,57 @@ namespace RoggyPerseus
 
         private static void loot()
         {
+            Weapon weapon1 = CombatFunc.GetRandomWeapon();
+            Weapon weapon2 = CombatFunc.GetRandomWeapon();
+            Weapon weapon3 = CombatFunc.GetRandomWeapon();
 
+
+            Console.WriteLine("You defeated all monsters !! Choose a weapon as a reward :\n" +
+                              $"1 - {weapon1.Name}\n" +
+                              $"2 - {weapon2.Name}\n" +
+                              $"3 - {weapon3.Name}\n");
+
+            int weaponChoosed = Run.MakeChoice(3);
+
+            switch (weaponChoosed)
+            {
+                case 1:
+                    Run.weapons.Add(weapon1);
+                    Weapon.InitAllWeapons();
+                    break;
+
+                case 2:
+                    Run.weapons.Add(weapon2);
+                    Weapon.InitAllWeapons();
+                    break;
+
+                case 3:
+                    Run.weapons.Add(weapon3);
+                    Weapon.InitAllWeapons();
+                    break;
+            }
+        }
+
+        private static void selectCurrentWeapon()
+        {
+            if (Run.weapons.Count <= 1)
+            {
+                Run.currentWeapon = Run.weapons[0];
+                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
+            }
+            else
+            {
+                Console.WriteLine("Select the weapon you want to use :\n");
+                for (int i = 0; i < Run.weapons.Count; i++)
+                {
+                    Console.WriteLine($"{i+1} - {Run.weapons[i].Name}");
+                }
+                
+                int weaponChoosed = Run.MakeChoice(Run.weapons.Count);
+
+                Run.currentWeapon = Run.weapons[weaponChoosed - 1];
+                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
+            }
         }
     }
 }
