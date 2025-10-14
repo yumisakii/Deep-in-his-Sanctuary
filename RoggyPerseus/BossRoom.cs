@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RoggyPerseus
 {
-    internal class CombatRoom
+    internal class BossRoom
     {
-        public static void combatRoom()
+        public static void bossRoom()
         {
             fight();
             loot();
@@ -17,14 +17,13 @@ namespace RoggyPerseus
 
         private static void fight()
         {
-            Run.monsters.Clear();
-            Run.monsters.Add(CombatFunc.GetRandomMonster());
-            Run.monsters.Add(CombatFunc.GetRandomMonster());
-            Run.monsters.Add(CombatFunc.GetRandomMonster());
+            Run.boss = Run.AllBosses[0];
 
-            while (Run.monsters.Count > 0)
+            Console.WriteLine($"{Run.boss.Name} : {Run.boss.Description}\n");
+
+            while (Run.boss.Hp > 0)
             {
-                Console.WriteLine($"You're facing {Run.monsters.Count} monsters.\n" +
+                Console.WriteLine($"You're facing {Run.boss.Name}.\n" +
                                    "1 - Attack\n" +
                                    "2 - Use Skill\n");
 
@@ -33,39 +32,17 @@ namespace RoggyPerseus
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine($"Choose who to attack :");
-                        for (int i = 0; i < Run.monsters.Count; i++)
-                        {
-                            Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
-                        }
-
-                        int attackTarget = Run.MakeChoice(Run.monsters.Count);
-
-                        CombatFunc.Attack(Run.monsters[attackTarget - 1], Run.currentWeapon);
+                        BossCombatFunc.Attack(Run.boss, Run.currentWeapon);
                         break;
 
                     case 2:
-                        Console.WriteLine($"Choose who to use skill on :");
-                        for (int i = 0; i < Run.monsters.Count; i++)
-                        {
-                            Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
-                        }
-
-                        int skillTarget = Run.MakeChoice(3);
-
-                        CombatFunc.UseSkill(Run.monsters, skillTarget, Run.currentWeapon.skill);
+                        BossCombatFunc.UseSkill(Run.boss, Run.currentWeapon.skill);
                         break;
                 }
 
-                
-
-                for (int i = Run.monsters.Count - 1; i >= 0; i--)
+                if (Run.boss.Hp <= 0)
                 {
-                    if (Run.monsters[i].Hp <= 0)
-                    {
-                        Console.WriteLine($"You defeated {Run.monsters[i].Name}!");
-                        Run.monsters.RemoveAt(i);
-                    }
+                    Console.WriteLine($"You defeated {Run.boss.Name} ! Well done !");
                 }
             }
         }
@@ -77,7 +54,7 @@ namespace RoggyPerseus
             Weapon weapon3 = CombatFunc.GetRandomWeapon();
 
 
-            Console.WriteLine("You defeated all monsters !! Choose a weapon as a reward :\n" +
+            Console.WriteLine("You defeated the boss !! Choose a weapon as a reward :\n" +
                               $"1 - {weapon1.Name}\n" +
                               $"2 - {weapon2.Name}\n" +
                               $"3 - {weapon3.Name}\n");
@@ -115,9 +92,9 @@ namespace RoggyPerseus
                 Console.WriteLine("Select the weapon you want to use :\n");
                 for (int i = 0; i < Run.weapons.Count; i++)
                 {
-                    Console.WriteLine($"{i+1} - {Run.weapons[i].Name}");
+                    Console.WriteLine($"{i + 1} - {Run.weapons[i].Name}");
                 }
-                
+
                 int weaponChoosed = Run.MakeChoice(Run.weapons.Count);
 
                 Run.currentWeapon = Run.weapons[weaponChoosed - 1];

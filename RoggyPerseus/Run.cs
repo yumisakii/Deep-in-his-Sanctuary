@@ -6,13 +6,17 @@ class Run
     public static List<Monster> AllMonsters = new List<Monster>();
     public static List<Monster> monsters = new List<Monster>();
 
+    public static List<Boss> AllBosses = new List<Boss>();
+    public static Boss? boss;
+
     public static List<Weapon> AllWeapons = new List<Weapon>();
     public static List<Weapon> weapons = new List<Weapon>();
     public static Weapon currentWeapon = new Weapon();
 
-    public static void newRun()
+    public static void NewRun()
     {
         Monster.InitAllMonsters();
+        Boss.InitAllBosses();
         Weapon.InitAllWeapons();
 
         weapons.Add(new Weapon { Name = "Sword" });
@@ -28,15 +32,8 @@ class Run
         Console.WriteLine("You enter ROOM 3");
         ForgeRoom.forgeRoom();
 
-        Console.WriteLine("You enter ROOM 4");
-        bossRoom();
-    }
-
-    
-
-    private static void bossRoom()
-    {
-
+        Console.WriteLine("You enter ROOM 4\n");
+        BossRoom.bossRoom();
     }
 
     public static int MakeChoice(int num)
