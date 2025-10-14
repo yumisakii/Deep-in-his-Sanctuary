@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoggyPerseus
+namespace RoggyPerseus.RunFolder
 {
     internal class BossRoom
     {
@@ -12,7 +12,6 @@ namespace RoggyPerseus
         {
             fight();
             loot();
-            selectCurrentWeapon();
         }
 
         private static void fight()

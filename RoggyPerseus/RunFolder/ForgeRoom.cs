@@ -5,44 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace RoggyPerseus
+namespace RoggyPerseus.RunFolder
 {
     internal class ForgeRoom
     {
         public static void forgeRoom()
         {
-            Dialogue(1);
             WeaponChoices();
         }
 
-        private static void Dialogue(int step, Weapon? forgedWeapon = null)
+        private static void ForgingDialogue()
         {
-            if (step == 1)
+            Console.WriteLine("Very good, I'll fuse them now !");
+
+            Console.Write("Pouc");
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine("Bienvenue dans la forge...\n" +
-                                  "Veuillez choisir 2 armes à fusionner\n");
+                Thread.Sleep(1000);
+                Console.Write(".");
             }
+            Thread.Sleep(1000);
+            Console.WriteLine();
 
-            else if (step == 2 && forgedWeapon != null)
-            {
-                Console.WriteLine("Très bien je te fusionne ces deux armes");
-
-                Console.Write("Pouc");
-                for (int i = 0; i < 3; i++)
-                {
-                    Thread.Sleep(1000);
-                    Console.Write(".");
-                }
-                Console.WriteLine();
-
-                Console.WriteLine("Voici ta nouvelle arme\n");
-
-                Console.WriteLine($"Vous avez forgé l'arme {forgedWeapon.Name}");
-            }  
+            Console.WriteLine("Here you go !!\n");
         }
 
         private static void WeaponChoices()
         {
+            Console.WriteLine("Bienvenue dans la forge...\n" +
+                  "Veuillez choisir 2 armes à fusionner :\n");
             for (int i = 0; i < Run.weapons.Count; i++)
             {
                 Console.WriteLine($"{i + 1} - " + Run.weapons[i].Name);
@@ -58,7 +49,10 @@ namespace RoggyPerseus
             Weapon chosenWeapon2 = Run.weapons[choice2 - 1];
             Console.WriteLine($"'{chosenWeapon2.Name}'.\n");
 
+
             FusedWeapon fusedWeapon = FuseWeapons(chosenWeapon1, chosenWeapon2);
+
+            ForgingDialogue();
             Console.WriteLine($"You got a new Fused Weapon : '{fusedWeapon.Name}' !");
 
             Run.weapons.Add(fusedWeapon);
