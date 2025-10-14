@@ -2,26 +2,26 @@
 {
     public static void game()
     {
-        gameIntro();
+        GameIntro();
 
-        lobby();
+        Lobby();
 
-        upgradeCharacter();
+        UpgradeCharacter();
 
         Run.newRun();
     }
 
-    private static void gameIntro()
+    private static void GameIntro()
     {
         Console.WriteLine("Introduction du jeu.....");
     }
 
-    private static void lobby()
+    private static void Lobby()
     {
         Console.WriteLine("Vous êtes dans le lobby...");
     }
 
-    private static void upgradeCharacter()
+    private static void UpgradeCharacter()
     {
         Console.WriteLine("Ameliorez votre personage");
     }
