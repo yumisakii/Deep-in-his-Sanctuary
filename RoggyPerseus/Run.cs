@@ -15,16 +15,18 @@ class Run
         Monster.InitAllMonsters();
         Weapon.InitAllWeapons();
 
+        weapons.Add(new Weapon { Name = "Sword" });
+        weapons.Add(new Weapon { Name = "MasterSword" });
+        weapons.Add(new Weapon { Name = "GutsSword" });
 
         Console.WriteLine("You enter ROOM 1");
         CombatRoom.combatRoom();
-
 
         Console.WriteLine("You enter ROOM 2");
         CombatRoom.combatRoom();
 
         Console.WriteLine("You enter ROOM 3");
-        forgeRoom();
+        ForgeRoom.forgeRoom();
 
         Console.WriteLine("You enter ROOM 4");
         bossRoom();
@@ -33,11 +35,6 @@ class Run
     
 
     private static void bossRoom()
-    {
-
-    }
-
-    private static void forgeRoom()
     {
 
     }
