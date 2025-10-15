@@ -68,6 +68,9 @@ namespace RoggyPerseus.RunFolder
                     }
                 }
             }
+
+            Run.playerStats.Score += 1;
+            Console.WriteLine($"{Run.playerStats.Score}");
         }
 
         private static void loot()

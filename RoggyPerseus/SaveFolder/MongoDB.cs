@@ -55,7 +55,7 @@ public static class MongoManager
         {
             Id = ObjectId.GenerateNewId(),
             Username = username,
-            Score = rnd.Next(0, 100),
+            Score = Run.PBScore,
             PasswordHash = hashB64,
             PasswordSalt = saltB64,
             Iterations = 100_000,
@@ -87,7 +87,7 @@ public static class MongoManager
     {
         if (context == null)
         {
-            Console.WriteLine("❌ MongoManager n'est pas initialisé.");
+            Console.WriteLine("MongoManager n'est pas initialisé.");
             return new List<ProfileDoc>();
         }
 
@@ -106,7 +106,7 @@ public static class MongoManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Erreur inattendue : {ex.Message}");
+            Console.WriteLine($"Erreur inattendue : {ex.Message}");
         }
 
         return new List<ProfileDoc>();

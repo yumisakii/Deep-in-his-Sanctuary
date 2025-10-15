@@ -9,6 +9,9 @@ class Run
     public static List<Boss> AllBosses = new List<Boss>();
     public static Boss? boss;
 
+    public static PlayerStats playerStats = new PlayerStats();
+    public static int PBScore = 0;
+
     public static List<Weapon> AllWeapons = new List<Weapon>();
     public static List<Weapon> weapons = new List<Weapon>();
     public static Weapon currentWeapon = new Weapon();
@@ -18,6 +21,8 @@ class Run
         Monster.InitAllMonsters();
         Boss.InitAllBosses();
         Weapon.InitAllWeapons();
+
+        playerStats.Score = 0;
 
         Console.WriteLine("You enter ROOM 1");
         CombatRoom.combatRoom();

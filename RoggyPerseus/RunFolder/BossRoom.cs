@@ -42,6 +42,10 @@ namespace RoggyPerseus.RunFolder
                 if (Run.boss.Hp <= 0)
                 {
                     Console.WriteLine($"You defeated {Run.boss.Name} ! Well done !");
+
+                    Run.playerStats.Score += 1;
+
+                    Console.WriteLine($"{Run.playerStats.Score}");
                 }
             }
         }

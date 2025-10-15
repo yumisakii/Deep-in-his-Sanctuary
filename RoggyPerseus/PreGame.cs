@@ -105,11 +105,6 @@ class PreGame
         }
     }
 
-    private static void AddOneCoin()
-    {
-        stats.Coins++;
-    }
-
     private static void PlayGame()
     {
         var load = JsonSaveLoad.LoadGame(saveFile.localDataId);
@@ -122,20 +117,6 @@ class PreGame
         {
             saveFile = new SaveFile();
             stats = saveFile.PlayerStats;
-        }
-
-        while (true)
-        {
-            Console.Write($"Coins : {stats.Coins}\n");
-            Console.WriteLine("Press a button to add a coin, press Q to quit.\n");
-            ConsoleKeyInfo key = Console.ReadKey();
-
-            if (key.Key == ConsoleKey.Q)
-            {
-                JsonSaveLoad.SaveGame(profile.Id, saveFile.localDataId, stats);
-                GameMenu();
-            }
-            else { AddOneCoin(); }
         }
     }
     
