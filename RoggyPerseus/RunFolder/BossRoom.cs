@@ -8,13 +8,13 @@ namespace RoggyPerseus.RunFolder
 {
     internal class BossRoom
     {
-        public static void bossRoom()
+        public static async Task bossRoom()
         {
-            fight();
+            await fight();
             loot();
         }
 
-        private static void fight()
+        private static async Task fight()
         {
             Run.boss = Run.AllBosses[0];
 
@@ -46,6 +46,17 @@ namespace RoggyPerseus.RunFolder
                     Run.playerStats.Score += 1;
 
                     Console.WriteLine($"{Run.playerStats.Score}");
+                }
+                else
+                {
+                    PreGame.stats.Hp -= Run.boss.Damage;
+                    Console.WriteLine($"{Run.boss.Name} attack you for {Run.boss.Damage} damage !\n");
+                    Console.WriteLine($"You have {PreGame.stats.Hp} hp left.\n");
+                }
+
+                if (PreGame.stats.Hp <= 0)
+                {
+                    await Run.YouDied();
                 }
             }
         }

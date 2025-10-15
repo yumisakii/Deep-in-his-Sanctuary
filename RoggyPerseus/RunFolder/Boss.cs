@@ -10,7 +10,7 @@ namespace RoggyPerseus.RunFolder
     {
         public string Name { get; set; } = "baseBoss";
         public float Hp { get; set; }
-
+        public float Damage { get; set; } = 10f;
         public string Description { get; set; } = default!;
 
 

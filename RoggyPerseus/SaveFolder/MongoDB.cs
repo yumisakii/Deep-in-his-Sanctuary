@@ -85,6 +85,36 @@ public static class MongoManager
         return valid ? profile : null;
     }
 
+    public static async Task UpdateProfile(string username, int newScore)
+    {
+        if (context == null)
+            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
+
+        var filter = Builders<ProfileDoc>.Filter.Eq(p => p.Username, username);
+
+        // Check if the profile exist
+        var profile = await context.Profiles.Find(filter).FirstOrDefaultAsync();
+        if (profile == null)
+        {
+            Console.WriteLine($"Aucun profil trouvé pour {username}.\n");
+            return;
+        }
+
+        var update = Builders<ProfileDoc>.Update
+            .Set(p => p.Score, newScore)
+            .Set(s => s.CreatedUtc, DateTime.UtcNow);
+        var result = await context.Profiles.UpdateOneAsync(filter, update);
+
+        if (result.ModifiedCount > 0)
+        {
+            Console.WriteLine($"Score de {username} mis à jour à {newScore}.");
+        }
+        else
+        {
+            Console.WriteLine($"Score de {username} inchangé.");
+        }
+    }
+
     public static async Task<List<ProfileDoc>> GetLeaderboardProfiles()
     {
         if (context == null)

@@ -34,7 +34,7 @@ class Run
         ForgeRoom.forgeRoom();
 
         Console.WriteLine("You enter ROOM 4\n");
-        BossRoom.bossRoom();
+        await BossRoom.bossRoom();
     }
 
     public static async Task YouDied()
@@ -43,6 +43,8 @@ class Run
 
         if (playerStats.Score > playerStats.BestScore)
             playerStats.BestScore = playerStats.Score;
+
+        await MongoManager.UpdateProfile(AccountManager.currentProfile.Username, playerStats.BestScore);
 
         await Game.Lobby();
     }
