@@ -1,9 +1,13 @@
 ﻿using RoggyPerseus;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Game
 {
+
     public static async Task game()
     {
+        LoadGame();
+
         GameIntro();
 
         await Lobby();
@@ -47,6 +51,28 @@ class Game
 
     private static void UpgradeCharacter()
     {
-        Console.WriteLine("Ameliorez votre personage");
+        Console.WriteLine("Upgrade ur character");
+    }
+
+    private static void LoadGame()
+    {
+        var load = JsonSaveLoad.LoadGame(PreGame.saveFile.localDataId);
+        if (load != null)
+        {
+            PreGame.saveFile = load;
+            PreGame.savedStats = PreGame.saveFile.PlayerStats;
+        }
+        else
+        {
+            PreGame.saveFile = new SaveFile();
+            PreGame.savedStats = PreGame.saveFile.PlayerStats;
+        }
+    }
+
+    public static void SaveGame()
+    {
+        PreGame.savedStats = Run.playerStats;
+        JsonSaveLoad.SaveGame(PreGame.profile.Id, PreGame.saveFile.localDataId, PreGame.savedStats);
+        Console.WriteLine("Game Saved.");
     }
 }

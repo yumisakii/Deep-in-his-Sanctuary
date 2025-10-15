@@ -1,12 +1,11 @@
-﻿using System;
+﻿using RoggyPerseus;
+using System;
 using System.Text.Json;
 
 class PreGame
 {
-    private static int data_id;
-
     public static ProfileDoc profile = new ProfileDoc();
-    public static PlayerStats stats = new PlayerStats();
+    public static PlayerStats savedStats = new PlayerStats();
     public static SaveFile saveFile = new SaveFile();
 
     public static async Task preGame()
@@ -22,7 +21,7 @@ class PreGame
         "\n2 - Create Account" +
         "\n3 - Quit\n");
 
-        int choice = MakeChoice();
+        int choice = UF.MakeChoice(3);
 
         if (choice == 1)
         {
@@ -60,7 +59,7 @@ class PreGame
         "\n3 - Leaderboard" +
         "\n5 - Quit\n");
 
-        int choice = MakeChoice();
+        int choice = UF.MakeChoice(5);
 
         if (choice == 1)
         {
@@ -71,7 +70,7 @@ class PreGame
         else if (choice == 2)
         {
             //Change Save
-            ChangeSave();
+            await ChangeSave();
 
         }
         else if (choice == 3)
@@ -104,23 +103,8 @@ class PreGame
             await GameMenu();
         }
     }
-
-    private static void PlayGame()
-    {
-        var load = JsonSaveLoad.LoadGame(saveFile.localDataId);
-        if (load != null)
-        {
-            saveFile = load;
-            stats = saveFile.PlayerStats;
-        }
-        else
-        {
-            saveFile = new SaveFile();
-            stats = saveFile.PlayerStats;
-        }
-    }
     
-    private static void ChangeSave()
+    private static async Task ChangeSave()
     {
         Console.WriteLine("SAves veese svera");
         Console.WriteLine("--Saves--\n" +
@@ -128,33 +112,10 @@ class PreGame
                           "Save 2 : INFO SUR LA SAVE\n" +
                           "Save 3 : INFO SUR LA SAVE\n" +
                           "Choose a Save : ");
-        int saveChoice = int.Parse(Console.ReadLine() ?? "");
 
-        if (saveChoice == 1 || saveChoice == 2 || saveChoice == 3)
-        {
-            saveFile.localDataId = saveChoice;
-            GameMenu();
-        }
-        else
-        {
-            Console.WriteLine("Choose a number between 1 and 3.");
-            ChangeSave();
-        }
-    }
+        int saveChoice = UF.MakeChoice(3);
 
-    private static int MakeChoice()
-    {
-        int choice;
-        while (true)
-        {
-            Console.Write("Entrez un nombre : ");
-            string? input = Console.ReadLine();
-
-            if (int.TryParse(input, out choice))
-                break;
-
-            Console.WriteLine("Veuillez entrez un chiffre.");
-        }
-        return choice;
+        saveFile.localDataId = saveChoice;
+        await GameMenu();
     }
 }

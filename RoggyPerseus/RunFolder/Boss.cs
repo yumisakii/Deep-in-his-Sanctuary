@@ -9,7 +9,8 @@ namespace RoggyPerseus.RunFolder
     internal class Boss
     {
         public string Name { get; set; } = "baseBoss";
-        public float Hp { get; set; }
+        public float Hp { get; set; } = 30f;
+        public float Damage { get; set; } = 20f;
 
         public string Description { get; set; } = default!;
 

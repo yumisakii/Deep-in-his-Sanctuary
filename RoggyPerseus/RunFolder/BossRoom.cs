@@ -8,13 +8,13 @@ namespace RoggyPerseus.RunFolder
 {
     internal class BossRoom
     {
-        public static void bossRoom()
+        public static async Task bossRoom()
         {
-            fight();
+            await fight();
             loot();
         }
 
-        private static void fight()
+        private static async Task fight()
         {
             Run.boss = Run.AllBosses[0];
 
@@ -46,6 +46,17 @@ namespace RoggyPerseus.RunFolder
                     Run.playerStats.Score += 1;
 
                     Console.WriteLine($"{Run.playerStats.Score}");
+                }
+                else
+                {
+                    Run.playerStats.Hp -= Run.boss.Damage;
+                    Console.WriteLine($"{Run.boss.Name} attack you for {Run.boss.Damage} damage !\n");
+                    Console.WriteLine($"You have {Run.playerStats.Hp} hp left.\n");
+                }
+
+                if (Run.playerStats.Hp <= 0)
+                {
+                    await Run.YouDied();
                 }
             }
         }
@@ -80,28 +91,6 @@ namespace RoggyPerseus.RunFolder
                     Run.weapons.Add(weapon3);
                     Weapon.InitAllWeapons();
                     break;
-            }
-        }
-
-        private static void selectCurrentWeapon()
-        {
-            if (Run.weapons.Count <= 1)
-            {
-                Run.currentWeapon = Run.weapons[0];
-                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
-            }
-            else
-            {
-                Console.WriteLine("Select the weapon you want to use :\n");
-                for (int i = 0; i < Run.weapons.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1} - {Run.weapons[i].Name}");
-                }
-
-                int weaponChoosed = UF.MakeChoice(Run.weapons.Count);
-
-                Run.currentWeapon = Run.weapons[weaponChoosed - 1];
-                Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
             }
         }
     }

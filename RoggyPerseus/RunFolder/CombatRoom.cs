@@ -66,13 +66,13 @@ namespace RoggyPerseus.RunFolder
                     }
                     else
                     {
-                        PreGame.stats.Hp -= Run.monsters[i].Damage;
+                        Run.playerStats.Hp -= Run.monsters[i].Damage;
                         Console.WriteLine($"{Run.monsters[i].Name} attack you for {Run.monsters[i].Damage} damage !\n");
-                        Console.WriteLine($"You have {PreGame.stats.Hp} hp left.\n");
+                        Console.WriteLine($"You have {Run.playerStats.Hp} hp left.\n");
                     }
                 }
 
-                if (PreGame.stats.Hp <= 0)
+                if (Run.playerStats.Hp <= 0)
                 {
                     await Run.YouDied();
                 }
