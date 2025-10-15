@@ -11,7 +11,6 @@ namespace RoggyPerseus.RunFolder
         public string Name { get; set; } = "baseBoss";
         public float Hp { get; set; } = 30f;
         public float Damage { get; set; } = 20f;
-
         public string Description { get; set; } = default!;
 
 
@@ -23,7 +22,7 @@ namespace RoggyPerseus.RunFolder
         {
             Run.AllBosses.Clear();
 
-            Run.AllBosses.Add(new Boss { Name = "Bloodshade", Hp = 100, Description = "A lurking nightmare, born from shadow and blood, he drains the life " +
+            Run.AllBosses.Add(new Boss { Name = "Bloodshade", Hp = 10, Damage = 20, Description = "A lurking nightmare, born from shadow and blood, he drains the life " +
                                                                                       "and reflect attacks of those who want to face it." });
 
         }

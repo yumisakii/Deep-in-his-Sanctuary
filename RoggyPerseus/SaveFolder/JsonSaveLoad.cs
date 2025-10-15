@@ -51,10 +51,10 @@ public class JsonSaveLoad
             Console.WriteLine("No save file found.");
             return null;
         }
-
+        
         string json = File.ReadAllText(saveFilePath);
         List<SaveFile>? allSaves = JsonSerializer.Deserialize<List<SaveFile>>(json);
-        
+
         if (allSaves == null || allSaves.Count == 0)
         {
             Console.WriteLine("No valid save data found.");
@@ -64,7 +64,7 @@ public class JsonSaveLoad
         var found = allSaves.Find(s => s.localDataId == targetLocalDataId);
         if (found != null)
         {
-            Console.WriteLine($"Game loaded. User ID: {found.userId}, Local ID: {found.localDataId}");
+            Console.WriteLine($"Game loaded. Local ID: {found.localDataId}. Room: {found.PlayerStats.currentRoom}");
             return found;
         }
         Console.WriteLine($"No save found with LocalDataId = {targetLocalDataId}");

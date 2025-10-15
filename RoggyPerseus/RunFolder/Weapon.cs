@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoggyPerseus.RunFolder
 {
-    class Weapon
+    public class Weapon
     {
         public string Name { get; set; } = "defaultWeapon";
         public float Damage { get; set; } = 10f;
@@ -45,7 +45,7 @@ namespace RoggyPerseus.RunFolder
         }
     }
 
-    class Skill
+    public class Skill
     {
         public string Name { get; set; } = "defaultSkill";
         public float Damage { get; set; } = 10f;
