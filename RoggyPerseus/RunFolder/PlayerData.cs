@@ -9,5 +9,7 @@ public class SaveFile
 public class PlayerStats
 {
     public float Hp { get; set; } = 10f;
-    public int Coins { get; set; }
+    
+    public int BestScore { get; set; } = 0;
+    public int Score { get; set; } = 0;
 }

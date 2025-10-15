@@ -1,4 +1,6 @@
-﻿class Game
+﻿using RoggyPerseus;
+
+class Game
 {
     public static async Task game()
     {
@@ -25,7 +27,7 @@
                           "2 - upgrade character\n" +
                           "3 - menu\n");
         
-        int choice = Run.MakeChoice(3);
+        int choice = UF.MakeChoice(3);
 
         switch (choice)
         {

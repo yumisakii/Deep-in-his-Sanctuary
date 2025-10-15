@@ -28,7 +28,7 @@ namespace RoggyPerseus.RunFolder
                                    "1 - Attack\n" +
                                    "2 - Use Skill\n");
 
-                int choice = Run.MakeChoice(2);
+                int choice = UF.MakeChoice(2);
 
                 switch (choice)
                 {
@@ -39,7 +39,7 @@ namespace RoggyPerseus.RunFolder
                             Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
                         }
 
-                        int attackTarget = Run.MakeChoice(Run.monsters.Count);
+                        int attackTarget = UF.MakeChoice(Run.monsters.Count);
 
                         CombatFunc.Attack(Run.monsters[attackTarget - 1], Run.currentWeapon);
                         break;
@@ -51,7 +51,7 @@ namespace RoggyPerseus.RunFolder
                             Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
                         }
 
-                        int skillTarget = Run.MakeChoice(3);
+                        int skillTarget = UF.MakeChoice(3);
 
                         CombatFunc.UseSkill(Run.monsters, skillTarget, Run.currentWeapon.skill);
                         break;
@@ -74,11 +74,12 @@ namespace RoggyPerseus.RunFolder
 
                 if (PreGame.stats.Hp <= 0)
                 {
-                    Func.WriteInColor("You died.\n", ConsoleColor.Red);
-
-                    await Game.Lobby();
+                    await Run.YouDied();
                 }
             }
+
+            Run.playerStats.Score += 1;
+            Console.WriteLine($"{Run.playerStats.Score}");
         }
 
         private static void loot()
@@ -93,7 +94,7 @@ namespace RoggyPerseus.RunFolder
                               $"2 - {weapon2.Name}\n" +
                               $"3 - {weapon3.Name}\n");
 
-            int weaponChoosed = Run.MakeChoice(3);
+            int weaponChoosed = UF.MakeChoice(3);
 
             switch (weaponChoosed)
             {

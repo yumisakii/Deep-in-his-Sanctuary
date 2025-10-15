@@ -37,7 +37,7 @@ namespace RoggyPerseus.RunFolder
                     Console.WriteLine($"{i + 1} - {Run.weapons[i].Name}");
                 }
 
-                int weaponChoosed = Run.MakeChoice(Run.weapons.Count);
+                int weaponChoosed = UF.MakeChoice(Run.weapons.Count);
 
                 Run.currentWeapon = Run.weapons[weaponChoosed - 1];
                 Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");

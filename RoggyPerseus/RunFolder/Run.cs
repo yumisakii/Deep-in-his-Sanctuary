@@ -1,4 +1,5 @@
-﻿using RoggyPerseus.RunFolder;
+﻿using RoggyPerseus;
+using RoggyPerseus.RunFolder;
 using System.Threading;
 
 class Run
@@ -9,6 +10,8 @@ class Run
     public static List<Boss> AllBosses = new List<Boss>();
     public static Boss? boss;
 
+    public static PlayerStats playerStats = new PlayerStats();
+
     public static List<Weapon> AllWeapons = new List<Weapon>();
     public static List<Weapon> weapons = new List<Weapon>();
     public static Weapon currentWeapon = new Weapon();
@@ -18,6 +21,8 @@ class Run
         Monster.InitAllMonsters();
         Boss.InitAllBosses();
         Weapon.InitAllWeapons();
+
+        playerStats.Score = 0;
 
         Console.WriteLine("You enter ROOM 1");
         await CombatRoom.combatRoom();
@@ -32,24 +37,14 @@ class Run
         BossRoom.bossRoom();
     }
 
-    public static int MakeChoice(int num)
+    public static async Task YouDied()
     {
-        while (true)
-        {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        UF.WriteInColor("You died.\n", ConsoleColor.Red);
 
-            // Convertir la touche en nombre si c'est entre 1 et num
-            int choice = 0;
-            if (keyInfo.Key >= ConsoleKey.D1 && keyInfo.Key <= ConsoleKey.D9)
-                choice = keyInfo.Key - ConsoleKey.D0;
-            else if (keyInfo.Key >= ConsoleKey.NumPad1 && keyInfo.Key <= ConsoleKey.NumPad9)
-                choice = keyInfo.Key - ConsoleKey.NumPad0;
+        if (playerStats.Score > playerStats.BestScore)
+            playerStats.BestScore = playerStats.Score;
 
-            if (choice >= 1 && choice <= num)
-                return choice;
-
-            Console.WriteLine($"Choose a number between 1 and {num}, try again.\n");
-        }
+        await Game.Lobby();
     }
 
 

@@ -26,7 +26,7 @@ namespace RoggyPerseus.RunFolder
                                    "1 - Attack\n" +
                                    "2 - Use Skill\n");
 
-                int choice = Run.MakeChoice(2);
+                int choice = UF.MakeChoice(2);
 
                 switch (choice)
                 {
@@ -42,6 +42,10 @@ namespace RoggyPerseus.RunFolder
                 if (Run.boss.Hp <= 0)
                 {
                     Console.WriteLine($"You defeated {Run.boss.Name} ! Well done !");
+
+                    Run.playerStats.Score += 1;
+
+                    Console.WriteLine($"{Run.playerStats.Score}");
                 }
             }
         }
@@ -58,7 +62,7 @@ namespace RoggyPerseus.RunFolder
                               $"2 - {weapon2.Name}\n" +
                               $"3 - {weapon3.Name}\n");
 
-            int weaponChoosed = Run.MakeChoice(3);
+            int weaponChoosed = UF.MakeChoice(3);
 
             switch (weaponChoosed)
             {
@@ -94,7 +98,7 @@ namespace RoggyPerseus.RunFolder
                     Console.WriteLine($"{i + 1} - {Run.weapons[i].Name}");
                 }
 
-                int weaponChoosed = Run.MakeChoice(Run.weapons.Count);
+                int weaponChoosed = UF.MakeChoice(Run.weapons.Count);
 
                 Run.currentWeapon = Run.weapons[weaponChoosed - 1];
                 Console.WriteLine($"The '{Run.currentWeapon.Name}' has been equiped.\n");
