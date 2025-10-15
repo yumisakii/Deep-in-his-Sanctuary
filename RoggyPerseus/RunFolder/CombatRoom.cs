@@ -8,14 +8,14 @@ namespace RoggyPerseus.RunFolder
 {
     internal class CombatRoom
     {
-        public static void combatRoom()
+        public static async Task combatRoom()
         {
-            fight();
+            await fight();
             loot();
             Weapon.SelectCurrentWeapon();
         }
 
-        private static void fight()
+        private static async Task fight()
         {
             Run.monsters.Clear();
             Run.monsters.Add(CombatFunc.GetRandomMonster());
@@ -57,15 +57,26 @@ namespace RoggyPerseus.RunFolder
                         break;
                 }
 
-                
-
                 for (int i = Run.monsters.Count - 1; i >= 0; i--)
                 {
                     if (Run.monsters[i].Hp <= 0)
                     {
-                        Console.WriteLine($"You defeated {Run.monsters[i].Name}!");
+                        Console.WriteLine($"You defeated {Run.monsters[i].Name}!\n");
                         Run.monsters.RemoveAt(i);
                     }
+                    else
+                    {
+                        PreGame.stats.Hp -= Run.monsters[i].Damage;
+                        Console.WriteLine($"{Run.monsters[i].Name} attack you for {Run.monsters[i].Damage} damage !\n");
+                        Console.WriteLine($"You have {PreGame.stats.Hp} hp left.\n");
+                    }
+                }
+
+                if (PreGame.stats.Hp <= 0)
+                {
+                    Func.WriteInColor("You died.\n", ConsoleColor.Red);
+
+                    await Game.Lobby();
                 }
             }
         }

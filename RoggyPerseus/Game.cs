@@ -1,14 +1,14 @@
 ﻿class Game
 {
-    public static void game()
+    public static async Task game()
     {
         GameIntro();
 
-        Lobby();
+        await Lobby();
 
         UpgradeCharacter();
 
-        Run.NewRun();
+
     }
 
     private static void GameIntro()
@@ -16,9 +16,31 @@
         Console.WriteLine("Introduction du jeu.....");
     }
 
-    private static void Lobby()
+    public static async Task Lobby()
     {
-        Console.WriteLine("Vous êtes dans le lobby...");
+        Console.WriteLine("You're in the lobby.\n");
+
+        Console.WriteLine("what you wanna do ?\n" +
+                          "1 - new run\n" +
+                          "2 - upgrade character\n" +
+                          "3 - menu\n");
+        
+        int choice = Run.MakeChoice(3);
+
+        switch (choice)
+        {
+            case 1:
+                await Run.NewRun();
+                break;
+
+            case 2:
+                UpgradeCharacter();
+                break;
+
+            case 3:
+                await PreGame.GameMenu();
+                break;
+        }
     }
 
     private static void UpgradeCharacter()

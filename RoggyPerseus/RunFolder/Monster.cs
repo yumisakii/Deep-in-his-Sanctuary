@@ -9,7 +9,8 @@ namespace RoggyPerseus.RunFolder
     internal class Monster
     {
         public string Name { get; set; } = "baseMonster";
-        public float Hp { get; set; }
+        public float Hp { get; set; } = 10f;
+        public float Damage { get; set; } = 10f;
         
 
 

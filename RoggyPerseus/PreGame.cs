@@ -5,9 +5,9 @@ class PreGame
 {
     private static int data_id;
 
-    private static ProfileDoc profile = new ProfileDoc();
-    private static PlayerStats stats = new PlayerStats();
-    private static SaveFile saveFile = new SaveFile();
+    public static ProfileDoc profile = new ProfileDoc();
+    public static PlayerStats stats = new PlayerStats();
+    public static SaveFile saveFile = new SaveFile();
 
     public static async Task preGame()
     {
@@ -50,7 +50,7 @@ class PreGame
         }
     }
 
-    private static async Task GameMenu()
+    public static async Task GameMenu()
     {
         Console.Write(
         "\n--MENU--" +
@@ -65,7 +65,7 @@ class PreGame
         if (choice == 1)
         {
             //Play
-            PlayGame();
+            await Game.game();
 
         }
         else if (choice == 2)

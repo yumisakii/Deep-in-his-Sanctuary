@@ -8,8 +8,6 @@ public class SaveFile
 
 public class PlayerStats
 {
-    public int Hp { get; set; }
-    public int Attack { get; set; }
-    public int Defense { get; set; }
+    public float Hp { get; set; } = 10f;
     public int Coins { get; set; }
 }

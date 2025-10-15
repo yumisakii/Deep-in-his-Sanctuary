@@ -13,17 +13,17 @@ class Run
     public static List<Weapon> weapons = new List<Weapon>();
     public static Weapon currentWeapon = new Weapon();
 
-    public static void NewRun()
+    public static async Task NewRun()
     {
         Monster.InitAllMonsters();
         Boss.InitAllBosses();
         Weapon.InitAllWeapons();
 
         Console.WriteLine("You enter ROOM 1");
-        CombatRoom.combatRoom();
+        await CombatRoom.combatRoom();
 
         Console.WriteLine("You enter ROOM 2");
-        CombatRoom.combatRoom();
+        await CombatRoom.combatRoom();
 
         Console.WriteLine("You enter ROOM 3");
         ForgeRoom.forgeRoom();
