@@ -3,10 +3,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Game
 {
-
     public static async Task game()
     {
-
         LoadGame();
 
         GameIntro();
@@ -14,8 +12,6 @@ class Game
         await Lobby();
 
         UpgradeCharacter();
-
-
     }
 
     private static void GameIntro()
@@ -41,7 +37,6 @@ class Game
                 {
                     int roomToRun = ((PreGame.savedStats.currentRoom - 1) % 4) + 1; ;
 
-                    Console.WriteLine($"Current roommm : {Run.playerStats.currentRoom}\n");
                     if (Run.playerStats.currentRoom == 1)
                     {
                         await Run.NewRun();
@@ -51,8 +46,6 @@ class Game
                         await Run.PlayRun(roomToRun);
                     }
                 }
-                
-
                 break;
 
             case 2:

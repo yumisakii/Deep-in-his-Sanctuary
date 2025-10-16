@@ -67,7 +67,6 @@ namespace RoggyPerseus.RunFolder
             Weapon weapon2 = CombatFunc.GetRandomWeapon();
             Weapon weapon3 = CombatFunc.GetRandomWeapon();
 
-
             Console.WriteLine("You defeated the boss !! Choose a weapon as a reward :\n" +
                               $"1 - {weapon1.Name}\n" +
                               $"2 - {weapon2.Name}\n" +

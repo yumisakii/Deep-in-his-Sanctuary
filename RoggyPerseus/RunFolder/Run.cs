@@ -1,7 +1,5 @@
 ﻿using RoggyPerseus;
 using RoggyPerseus.RunFolder;
-using System.Threading;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Run
 {
@@ -60,7 +58,6 @@ class Run
             playerStats.currentRoom += 1;
             await Game.SaveGame();
         }
-
     }
 
     public static async Task YouDied()
@@ -87,5 +84,4 @@ class Run
         Weapon.InitAllWeapons();
         weapons = playerStats.Inventory;
     }
-
 }

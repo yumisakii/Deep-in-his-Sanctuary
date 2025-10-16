@@ -39,7 +39,7 @@ class PreGame
         else if (choice == 3)
         {
             //Quit
-            Console.WriteLine("\nBye byeee <3");
+            Console.WriteLine("\nGoodbye.");
             Environment.Exit(0);
         }
         else
@@ -57,7 +57,7 @@ class PreGame
         "\n1 - Play" +
         "\n2 - Change Save" +
         "\n3 - Leaderboard" +
-        "\n5 - Quit\n");
+        "\n4 - Quit\n");
 
         int choice = UF.MakeChoice(5);
 
@@ -88,13 +88,8 @@ class PreGame
         }
         else if (choice == 4)
         {
-            //Save
-            //JsonSaveLoad.SaveGame(profile.Id, saveFile.localDataId, stats);
-        }
-        else if (choice == 5)
-        {
             //Quit
-            Console.WriteLine("Bye byeee <3");
+            Console.WriteLine("Goodbye.");
             Environment.Exit(0);
         }
         else
@@ -106,11 +101,10 @@ class PreGame
     
     private static async Task ChangeSave()
     {
-        Console.WriteLine("SAves veese svera");
         Console.WriteLine("--Saves--\n" +
-                          "Save 1 : INFO SUR LA SAVE\n" +
-                          "Save 2 : INFO SUR LA SAVE\n" +
-                          "Save 3 : INFO SUR LA SAVE\n" +
+                          $"Save 1 : Current room : {savedStats.currentRoom}\n" +
+                          $"Save 2 : Current room : {savedStats.currentRoom}\n" +
+                          $"Save 3 : Current room : {savedStats.currentRoom}\n" +
                           "Choose a Save : ");
 
         int saveChoice = UF.MakeChoice(3);

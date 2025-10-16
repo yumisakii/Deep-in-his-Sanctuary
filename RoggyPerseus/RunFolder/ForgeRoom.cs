@@ -32,8 +32,8 @@ namespace RoggyPerseus.RunFolder
 
         private static void WeaponChoices()
         {
-            Console.WriteLine("Bienvenue dans la forge...\n" +
-                  "Veuillez choisir 2 armes à fusionner :\n");
+            Console.WriteLine("Welcome in the forge...\n" +
+                  "Please, choose 2 weapons to fuse :\n");
             for (int i = 0; i < Run.weapons.Count; i++)
             {
                 Console.WriteLine($"{i + 1} - " + Run.weapons[i].Name);
@@ -71,7 +71,6 @@ namespace RoggyPerseus.RunFolder
                     IsAOE = w1.skill.IsAOE || w2.skill.IsAOE,
                 }
             };
-
             return fusedWeapon;
         }
     }

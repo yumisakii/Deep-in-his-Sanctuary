@@ -8,7 +8,6 @@
             await MongoManager.InitServer();
 
             await PreGame.preGame();
-            //await Game.game();
         }
     }
 }

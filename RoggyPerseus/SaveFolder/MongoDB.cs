@@ -1,14 +1,10 @@
 ﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using RoggyPerseus.SaveFolder;
-using System.Security.Cryptography;
 
 public static class MongoManager
 {
     private static MongoContext? context;
-
-    private static Random rnd = new Random();
 
     public static async Task InitServer()
     {

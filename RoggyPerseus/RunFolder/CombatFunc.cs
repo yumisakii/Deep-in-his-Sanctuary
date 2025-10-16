@@ -11,7 +11,7 @@ namespace RoggyPerseus.RunFolder
         public static void Attack(Monster monster, Weapon weapon)
         {
             monster.Hp -= weapon.Damage;
-            Console.WriteLine($"You attacked the {monster.Name} for 10 damage.\n");
+            Console.WriteLine($"You attacked the {monster.Name} for {Run.currentWeapon.Damage} damage.\n");
         }
 
         public static void UseSkill(List<Monster> monsters, int skillTarget, Skill skill)
@@ -23,6 +23,7 @@ namespace RoggyPerseus.RunFolder
                 foreach (Monster m in monsters)
                 {
                     m.Hp -= skill.Damage;
+                    Console.WriteLine($"You attacked the {monster.Name} for {Run.currentWeapon.skill.Damage} damage.\n");
                 }
             }
             else

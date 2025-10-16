@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RoggyPerseus.RunFolder
+﻿namespace RoggyPerseus.RunFolder
 {
     public class Weapon
     {
@@ -12,7 +6,6 @@ namespace RoggyPerseus.RunFolder
         public float Damage { get; set; } = 10f;
 
         public Skill skill { get; set; } = new Skill();
-
 
         public static void InitAllWeapons()
         {

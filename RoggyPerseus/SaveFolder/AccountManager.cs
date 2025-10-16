@@ -3,7 +3,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class AccountManager
 {
-    public static ProfileDoc CurrentProfile101 { get; private set; }
+    public static ProfileDoc? CurrentProfile101 { get; private set; }
     public static PlayerProfile? currentProfile;
     static string currentPassword = "";
 
@@ -23,10 +23,10 @@ public class AccountManager
 
     public static async Task LoadProfile()
     {
-        Console.Write("Nom du joueur : ");
+        Console.Write("Player name : ");
         string name = Console.ReadLine() ?? "";
 
-        Console.Write("Mot de passe : ");
+        Console.Write("Password : ");
         string pwd = Console.ReadLine() ?? "";
 
         var profileDoc = await MongoManager.LoadProfile(name, pwd);
@@ -35,11 +35,11 @@ public class AccountManager
             currentProfile = new PlayerProfile { Username = profileDoc.Username };
             currentPassword = pwd;
             CurrentProfile101 = profileDoc;
-            Console.WriteLine($"Profil {name} chargé !");
+            Console.WriteLine($"Profil {name} loaded !");
         }
         else
         {
-            Console.WriteLine("Nom ou mot de passe incorrect.\n");
+            Console.WriteLine("Username or password incorrect.\n");
             await LoadProfile();
         }
     }

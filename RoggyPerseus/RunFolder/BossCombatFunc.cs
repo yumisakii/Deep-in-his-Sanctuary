@@ -11,13 +11,13 @@ namespace RoggyPerseus.RunFolder
         public static void Attack(Boss boss, Weapon weapon)
         {
             boss.Hp -= weapon.Damage;
-            Console.WriteLine($"You attacked {boss.Name} for 10 damage.\n");
+            Console.WriteLine($"You attacked {boss.Name} for {Run.currentWeapon.Damage} damage.\n");
         }
 
         public static void UseSkill(Boss boss, Skill skill)
         {
             boss.Hp -= skill.Damage;
-            Console.WriteLine($"{boss.Name} took 10 damage.\n");
+            Console.WriteLine($"{boss.Name} took {Run.currentWeapon.skill.Damage} damage.\n");
         }
 
         public static Weapon GetRandomWeapon()
