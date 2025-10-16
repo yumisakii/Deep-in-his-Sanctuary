@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using System.Text;
 using System.Text.Json;
 
 public class JsonSaveLoad
@@ -39,7 +40,9 @@ public class JsonSaveLoad
         }
 
         string newJson = JsonSerializer.Serialize(allSaves, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(saveFilePath, newJson);
+        string encoded = Convert.ToBase64String(Encoding.UTF8.GetBytes(newJson));
+        File.WriteAllText(saveFilePath, encoded);
+
 
         Console.WriteLine($"Game saved successfully (Local ID : {localDataId}).\n");
     }
@@ -51,9 +54,11 @@ public class JsonSaveLoad
             Console.WriteLine("No save file found.");
             return null;
         }
-        
-        string json = File.ReadAllText(saveFilePath);
-        List<SaveFile>? allSaves = JsonSerializer.Deserialize<List<SaveFile>>(json);
+
+        string encoded = File.ReadAllText(saveFilePath);
+        string decoded = Encoding.UTF8.GetString(Convert.FromBase64String(encoded));
+        List<SaveFile>? allSaves = JsonSerializer.Deserialize<List<SaveFile>>(decoded);
+
 
         if (allSaves == null || allSaves.Count == 0)
         {
