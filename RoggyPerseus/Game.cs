@@ -16,17 +16,17 @@ class Game
 
     private static void GameIntro()
     {
-        Console.WriteLine("Introduction du jeu.....");
+        Console.WriteLine("\nIntroduction du jeu.....");
     }
 
     public static async Task Lobby()
     {
         Console.WriteLine("You're in the lobby.\n");
 
-        Console.WriteLine("what you wanna do ?\n" +
-                          "1 - new run\n" +
-                          "2 - upgrade character\n" +
-                          "3 - menu\n");
+        Console.WriteLine("What you wanna do ?\n" +
+                          "1 - New run\n" +
+                          "2 - Upgrade character\n" +
+                          "3 - Menu");
         
         int choice = UF.MakeChoice(3);
 
@@ -60,7 +60,7 @@ class Game
 
     private static void UpgradeCharacter()
     {
-        Console.WriteLine("Upgrade ur character");
+        Console.WriteLine("Upgrade your character");
     }
 
     private static void LoadGame()

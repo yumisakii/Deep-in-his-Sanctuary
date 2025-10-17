@@ -14,20 +14,20 @@ public static class MongoManager
 
             await context.Db.RunCommandAsync<MongoDB.Bson.BsonDocument>(new MongoDB.Bson.BsonDocument("ping", 1));
 
-            Console.WriteLine("Connexion MongoDB initialisée avec succès.\n");
+            Console.WriteLine("\nConnection with MongoDB initialized.");
         }
         catch (MongoDB.Driver.MongoConnectionException ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Erreur : impossible de se connecter à MongoDB.");
-            Console.WriteLine($"Détails : {ex.Message}\n");
+            Console.WriteLine("Error: Unable to connect to MongoDB.");
+            Console.WriteLine($"Details : {ex.Message}\n");
             Console.ResetColor();
         }
         catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Une erreur inattendue est survenue lors de l'initialisation de MongoDB.");
-            Console.WriteLine($"Détails : {ex.Message}\n");
+            Console.WriteLine("An unexpected error occurred during MongoDB initialization.");
+            Console.WriteLine($"Details: {ex.Message}\n");
             Console.ResetColor();
         }
     }
@@ -35,13 +35,13 @@ public static class MongoManager
     public static async Task CreateProfile(string username, string password)
     {
         if (context == null)
-            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
+            throw new InvalidOperationException("MongoManager is not initialized.");
 
         var existing = await context.Profiles.Find(p => p.Username == username).FirstOrDefaultAsync();
 
         if (existing != null)
         {
-            Console.WriteLine("Ce nom d'utilisateur est déjà pris\n");
+            Console.WriteLine("This username is already taken");
             return;
         }
 
@@ -61,13 +61,13 @@ public static class MongoManager
         };
 
         await context.Profiles.InsertOneAsync(newProfile);
-        Console.WriteLine($"\nProfil {username} créé\n");
+        Console.WriteLine($"Profile {username} created");
     }
 
     public static async Task<ProfileDoc?> LoadProfile(string username, string password)
     {
         if (context == null)
-            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
+            throw new InvalidOperationException("MongoManager is not initialized.");
 
         // Get profile with username
         var profile = await context.Profiles.Find(p => p.Username == username).FirstOrDefaultAsync();
@@ -84,7 +84,7 @@ public static class MongoManager
     public static async Task UpdateProfile(string username, int newScore)
     {
         if (context == null)
-            throw new InvalidOperationException("MongoManager n'est pas initialisé.");
+            throw new InvalidOperationException("MongoManager is not initialized.");
 
         var filter = Builders<ProfileDoc>.Filter.Eq(p => p.Username, username);
 
@@ -92,7 +92,7 @@ public static class MongoManager
         var profile = await context.Profiles.Find(filter).FirstOrDefaultAsync();
         if (profile == null)
         {
-            Console.WriteLine($"Aucun profil trouvé pour {username}.\n");
+            Console.WriteLine($"No profile found for {username}.\n");
             return;
         }
 
@@ -103,11 +103,11 @@ public static class MongoManager
 
         if (result.ModifiedCount > 0)
         {
-            Console.WriteLine($"Score de {username} mis à jour à {newScore}.");
+            Console.WriteLine($"Score for {username} updated to {newScore}.");
         }
         else
         {
-            Console.WriteLine($"Score de {username} inchangé.");
+            Console.WriteLine($"Score for {username} unchanged.");
         }
     }
 
@@ -115,13 +115,13 @@ public static class MongoManager
     {
         if (context == null)
         {
-            Console.WriteLine("MongoManager n'est pas initialisé.");
+            Console.WriteLine("MongoManager is not initialized.");
             return new List<ProfileDoc>();
         }
 
         try
         {
-            Console.WriteLine("Récupération des profils pour le leaderboard...");
+            Console.WriteLine("Fetching profiles for leaderboard...");
 
             // Récupère tous les profils triés par score décroissant
             var profiles = await context.Profiles
@@ -129,12 +129,12 @@ public static class MongoManager
                 .SortByDescending(p => p.Score)
                 .ToListAsync();
 
-            Console.WriteLine($"{profiles.Count} profils récupérés.");
+            Console.WriteLine($"{profiles.Count} profiles retrieved.");
             return profiles;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erreur inattendue : {ex.Message}");
+            Console.WriteLine($"Unexpected error: {ex.Message}");
         }
 
         return new List<ProfileDoc>();

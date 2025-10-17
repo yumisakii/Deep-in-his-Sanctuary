@@ -9,10 +9,10 @@ public class AccountManager
 
     public static async Task CreateNewProfile()
     {
-        Console.Write("Nom du joueur : ");
+        Console.Write("\nPlayer Name : ");
         string name = Console.ReadLine() ?? "";
 
-        Console.Write("Mot de passe : ");
+        Console.Write("Password : ");
         string pwd = Console.ReadLine() ?? "";
 
         currentProfile = new PlayerProfile { Username = name };
@@ -23,7 +23,7 @@ public class AccountManager
 
     public static async Task LoadProfile()
     {
-        Console.Write("Player name : ");
+        Console.Write("\nPlayer name : ");
         string name = Console.ReadLine() ?? "";
 
         Console.Write("Password : ");

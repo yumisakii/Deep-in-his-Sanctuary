@@ -51,9 +51,9 @@ class PreGame
 
     public static async Task GameMenu()
     {
-        Console.Write(
+        Console.WriteLine(
         "\n--MENU--" +
-        $"\n-save {saveFile.localDataId}-" +
+        $"\n-Save {saveFile.localDataId}-" +
         "\n1 - Play" +
         "\n2 - Change Save" +
         "\n3 - Leaderboard" +

@@ -45,7 +45,7 @@ namespace RoggyPerseus.RunFolder
 
                     Run.playerStats.Score += 1;
 
-                    Console.WriteLine($"{Run.playerStats.Score}");
+                    Console.WriteLine($"Your score : {Run.playerStats.Score}\n");
                 }
                 else
                 {

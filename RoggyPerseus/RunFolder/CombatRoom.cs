@@ -51,6 +51,8 @@ namespace RoggyPerseus.RunFolder
                             Console.WriteLine($"{i + 1} - {Run.monsters[i].Name}");
                         }
 
+                        Console.WriteLine();
+
                         int skillTarget = UF.MakeChoice(3);
 
                         CombatFunc.UseSkill(Run.monsters, skillTarget, Run.currentWeapon.skill);
@@ -79,7 +81,7 @@ namespace RoggyPerseus.RunFolder
             }
 
             Run.playerStats.Score += 1;
-            Console.WriteLine($"{Run.playerStats.Score}");
+            Console.WriteLine($"Your score : {Run.playerStats.Score}\n");
         }
 
         private static void loot()
