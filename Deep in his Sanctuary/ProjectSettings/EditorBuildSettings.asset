@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CombatRoom.unity
     guid: cd61e225e2f5f664aaf40b6642d669b7
   - enabled: 1
+    path: Assets/Scenes/LootRoom.unity
+    guid: 4d5c94c84a4aca24f86c807ae4c8e024
+  - enabled: 1
     path: Assets/Scenes/UpgradeRoom.unity
     guid: 2f71ecdf52d5a2a4e9c90b40d7666aa2
   m_configObjects:
