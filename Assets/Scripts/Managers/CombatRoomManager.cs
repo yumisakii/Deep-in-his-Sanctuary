@@ -3,7 +3,7 @@ using UnityEngine;
 public class CombatRoomManager : MonoBehaviour
 {
     [SerializeField] private CombatRoomUIManager uiManager;
-    void Start()
+    private void Start()
     {
         Weapon newWeapon = new Weapon("Weapon_01", "Red", Rarity.Red);
         Monster newMonster = new Monster("King Skeleton", "Monster_01", DangerLevel.Grey);
@@ -13,11 +13,5 @@ public class CombatRoomManager : MonoBehaviour
         uiManager.SetCurrentWeapon(newWeapon);
 
         uiManager.SetMonsters(newMonster, newMonster1, newMonster2);
-    }
-
-
-    void Update()
-    {
-        
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class MonsterUIInit : MonoBehaviour
+public class MonsterUI : MonoBehaviour
 {
     [SerializeField] private Image MonsterIcon;
     [SerializeField] private TextMeshProUGUI MonsterName;

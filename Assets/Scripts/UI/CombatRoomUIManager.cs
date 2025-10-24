@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CombatRoomUIManager : MonoBehaviour
 {
-    [SerializeField] private WeaponUIInit weaponUI;
-    [SerializeField] private MonsterUIInit monster_0;
-    [SerializeField] private MonsterUIInit monster_1;
-    [SerializeField] private MonsterUIInit monster_2;
+    [SerializeField] private WeaponUI weaponUI;
+    [SerializeField] private MonsterUI monster_0;
+    [SerializeField] private MonsterUI monster_1;
+    [SerializeField] private MonsterUI monster_2;
 
     public void SetCurrentWeapon(Weapon weapon)
     {

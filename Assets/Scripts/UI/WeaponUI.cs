@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponUIInit : MonoBehaviour
+public class WeaponUI : MonoBehaviour
 {
     [SerializeField] private Image WeaponIcon;
     [SerializeField] private Image SpellIcon;

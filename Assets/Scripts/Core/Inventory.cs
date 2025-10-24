@@ -10,13 +10,3 @@ public class Inventory
         inventory.Add(weapon);
     }
 }
-
-
-public enum Rarity
-{
-    Grey,
-    Green,
-    Blue,
-    Purple,
-    Red
-}

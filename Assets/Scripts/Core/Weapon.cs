@@ -9,7 +9,7 @@ public class Weapon
 
     public string WeaponIconName { get; set; } = "";
     public string SpellIconName { get; set; } = "";
-    public Rarity Rarity { get; set; } = Rarity.Grey;
+    public Rarity Rarity { get; set; } = Rarity.Gray;
 
     public Weapon(string weaponIconName, string spellIconName, Rarity rarity)
     {
