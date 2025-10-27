@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class AllWeaponsList
+public static class AllWeapons
 {
     private static List<Weapon> allWeapons = new List<Weapon>();
 

@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323990347}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 927.6729, y: 647.52, z: -3.5429482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1382,7 +1382,7 @@ GameObject:
   - component: {fileID: 2066335042}
   - component: {fileID: 2066335041}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Lobby Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1479,5 +1479,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1220102232}
   - {fileID: 2066335044}
-  - {fileID: 1745269301}
   - {fileID: 323990349}
+  - {fileID: 1745269301}
