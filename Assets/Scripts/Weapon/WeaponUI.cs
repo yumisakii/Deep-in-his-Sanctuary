@@ -19,13 +19,17 @@ public class WeaponUI : MonoBehaviour
         SpellIcon.sprite = spellIcon;
     }
 
-    public void ScaleUpWeaponIcon()
+    public void ScaleUpIcon(string icon)
     {
-        UsefulFunctions.ScaleImage(WeaponIcon, 1.2f);
+        if (icon == "weapon")
+            UsefulFunctions.ScaleImage(WeaponIcon, 1.2f);
+        else if (icon == "spell")
+            UsefulFunctions.ScaleImage(SpellIcon, 1.2f);
     }
 
     public void ResetWeaponIconScale()
     {
         UsefulFunctions.ResetImageScale(WeaponIcon);
+        UsefulFunctions.ResetImageScale(SpellIcon);
     }
 }

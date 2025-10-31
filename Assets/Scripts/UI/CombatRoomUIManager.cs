@@ -26,9 +26,9 @@ public class CombatRoomUIManager : MonoBehaviour
 
     public void SetMonsters(Monster monster, Monster monster1, Monster monster2)
     {
-        monster_0.InitMonsterUI(monster.Name, monster.IconName, monster.MaxHealth, monster.DangerLevel);
-        monster_1.InitMonsterUI(monster1.Name, monster1.IconName, monster1.MaxHealth, monster1.DangerLevel);
-        monster_2.InitMonsterUI(monster2.Name, monster2.IconName, monster2.MaxHealth, monster2.DangerLevel);
+        monster_0.InitMonsterUI(monster);
+        monster_1.InitMonsterUI(monster1);
+        monster_2.InitMonsterUI(monster2);
 
         monstersUI.Add(monster_0);
         monstersUI.Add(monster_1);
@@ -37,18 +37,18 @@ public class CombatRoomUIManager : MonoBehaviour
 
     public void AttackingUI()
     {
-        //scale up the weapon icon or something
-        weaponUI.ScaleUpWeaponIcon();
-        Debug.Log("Attacking !!");
-
+        weaponUI.ScaleUpIcon("weapon");
         MonstersReadyToTakeDamage();
     }
     public void UsingSkillUI()
     {
-        //same here
-        Debug.Log("Using skill !!");
-
+        weaponUI.ScaleUpIcon("spell");
         MonstersReadyToTakeDamage();
+    }
+
+    public void ResetAttackingAndSkillUI()
+    {
+        weaponUI.ResetWeaponIconScale();
     }
 
     private void MonstersReadyToTakeDamage()
@@ -58,5 +58,11 @@ public class CombatRoomUIManager : MonoBehaviour
         monsterButton_0.enabled = true;
         monsterButton_1.enabled = true;
         monsterButton_2.enabled = true;
+    }
+
+    public void UpdateMonstersUI()
+    {
+        foreach (MonsterUI monsterUI in monstersUI)
+            monsterUI.UpdateMonsterUI();
     }
 }

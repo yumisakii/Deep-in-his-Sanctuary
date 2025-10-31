@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2232301055444726977, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+      propertyPath: combatRoomManager
+      value: 
+      objectReference: {fileID: 965824583}
     - target: {fileID: 5346208321310019945, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
       propertyPath: m_Name
       value: Monster (1)
@@ -1260,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2232301055444726977, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+      propertyPath: combatRoomManager
+      value: 
+      objectReference: {fileID: 965824583}
     - target: {fileID: 5346208321310019945, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
       propertyPath: m_Name
       value: Monster (2)
@@ -2548,6 +2556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2232301055444726977, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+      propertyPath: combatRoomManager
+      value: 
+      objectReference: {fileID: 965824583}
     - target: {fileID: 5346208321310019945, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
       propertyPath: m_Name
       value: Monster

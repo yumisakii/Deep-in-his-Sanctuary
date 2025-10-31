@@ -51,8 +51,10 @@ public class CombatRoomManager : BaseRoomManager
 
     }
 
-    public void AttackMonster()
+    public void AttackMonster(Monster monster)
     {
-
+        monster.Health -= 10;
+        uiManager.ResetAttackingAndSkillUI();
+        uiManager.UpdateMonstersUI();
     }
 }

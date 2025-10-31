@@ -243,8 +243,8 @@ RectTransform:
   - {fileID: 7635664443402086466}
   - {fileID: 8003301954284756192}
   - {fileID: 9177026526608467428}
-  - {fileID: 5212371950686586522}
   - {fileID: 8960452495235039892}
+  - {fileID: 5212371950686586522}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462f6c8dd7dda8b42b94193e075b6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatRoomManager: {fileID: 0}
   Icon: {fileID: 469773717187155608}
   Name: {fileID: 6694655480045458764}
   Health: {fileID: 7534893016811930914}
@@ -386,7 +387,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4852972066701336582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2232301055444726977}
+        m_TargetAssemblyTypeName: MonsterUI, Assembly-CSharp
+        m_MethodName: isAttacked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6861896690178898104
 GameObject:
   m_ObjectHideFlags: 0
