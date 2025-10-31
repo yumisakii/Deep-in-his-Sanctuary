@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public static class UsefulFunctions
 {
@@ -16,5 +17,16 @@ public static class UsefulFunctions
         list.RemoveAt(randomIndex);
 
         return element;
+    }
+
+    public static void ScaleImage(Image image, float scaleFactor)
+    {
+        Vector3 targetScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        image.transform.localScale = targetScale;        
+    }
+
+    public static void ResetImageScale(Image image)
+    {
+        image.transform.localScale = Vector3.one;
     }
 }

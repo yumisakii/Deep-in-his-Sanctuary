@@ -232,6 +232,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462f6c8dd7dda8b42b94193e075b6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3930459583141698220, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+  m_PrefabInstance: {fileID: 6410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9205775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1285,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462f6c8dd7dda8b42b94193e075b6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &893997939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3930459583141698220, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+  m_PrefabInstance: {fileID: 893997936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939377524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1381,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1178360101}
     m_Modifications:
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 965824583}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombatRoomManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 475015644785580152, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 965824583}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombatRoomManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 799721354059525171, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6466485618550495412, guid: 00c7a57a1632292458a0020db451f4be, type: 3}
       propertyPath: m_Name
       value: Weapon
@@ -1498,6 +1576,9 @@ MonoBehaviour:
   monster_0: {fileID: 1381731464}
   monster_1: {fileID: 6412}
   monster_2: {fileID: 893997938}
+  monsterButton_0: {fileID: 1381731465}
+  monsterButton_1: {fileID: 6413}
+  monsterButton_2: {fileID: 893997939}
 --- !u!114 &965824583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,6 +1596,11 @@ MonoBehaviour:
   roomCanva: {fileID: 1178360100}
   nextRoomManager: {fileID: 657830777}
   uiManager: {fileID: 965824582}
+  allMonstersData:
+  - {fileID: 11400000, guid: 81da9f7d64d4a5e41b0a558465475558, type: 2}
+  - {fileID: 11400000, guid: 65c7b13f223481646b616efb966c7adc, type: 2}
+  - {fileID: 11400000, guid: e16f468a5e9744b409c3cd79375cb048, type: 2}
+  - {fileID: 11400000, guid: a15ea43d204800b46b307db16f8a6dbd, type: 2}
 --- !u!4 &965824584
 Transform:
   m_ObjectHideFlags: 0
@@ -1824,7 +1910,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103069780}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2098,7 +2184,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178360097}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2485,6 +2571,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 462f6c8dd7dda8b42b94193e075b6fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1381731465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3930459583141698220, guid: 742cb838f8b2e9545987ede8b0d9d107, type: 3}
+  m_PrefabInstance: {fileID: 1381731462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1593175126

@@ -18,4 +18,14 @@ public class WeaponUI : MonoBehaviour
         WeaponIcon.sprite = weaponIcon;
         SpellIcon.sprite = spellIcon;
     }
+
+    public void ScaleUpWeaponIcon()
+    {
+        UsefulFunctions.ScaleImage(WeaponIcon, 1.2f);
+    }
+
+    public void ResetWeaponIconScale()
+    {
+        UsefulFunctions.ResetImageScale(WeaponIcon);
+    }
 }
