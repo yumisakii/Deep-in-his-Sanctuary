@@ -6,14 +6,14 @@ public static class AllWeapons
 {
     private static List<Weapon> allWeapons = new List<Weapon>();
 
-    public static void InitAllWeapons()
+    public static void InitAllWeapons(List<WeaponData> dataList)
     {
         allWeapons.Clear();
-        allWeapons.Add(new Weapon("Weapon_01", "Blue", Rarity.Blue));
-        allWeapons.Add(new Weapon("Weapon_02", "Blue", Rarity.Blue));
-        allWeapons.Add(new Weapon("Weapon_03", "Blue", Rarity.Blue));
-        allWeapons.Add(new Weapon("Weapon_04", "Blue", Rarity.Blue));
-        allWeapons.Add(new Weapon("Weapon_05", "Blue", Rarity.Blue));
+
+        foreach (WeaponData data in dataList)
+        {
+            allWeapons.Add(WeaponBuilder.BuildWeapon(data));
+        }
     }
 
     public static void InitAllWeaponsList(List<Weapon> weapons)

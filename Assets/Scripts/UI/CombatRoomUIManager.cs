@@ -21,7 +21,7 @@ public class CombatRoomUIManager : MonoBehaviour
 
     public void SetCurrentWeapon(Weapon weapon)
     {
-        weaponUI.InitWeapon(weapon.WeaponIconName, weapon.SpellIconName, weapon.Rarity);
+        weaponUI.InitWeapon(weapon);
     }
 
     public void SetMonsters(Monster monster, Monster monster1, Monster monster2)

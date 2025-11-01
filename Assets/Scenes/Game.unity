@@ -895,9 +895,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f35769696cd75049af94793ef1674e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon_0: {fileID: 977996896}
-  weapon_1: {fileID: 1134864654}
-  weapon_2: {fileID: 767144251}
+  weaponsSlotList:
+  - {fileID: 977996896}
+  - {fileID: 1134864654}
+  - {fileID: 767144251}
 --- !u!114 &657830777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,6 +916,7 @@ MonoBehaviour:
   roomCanva: {fileID: 1103069784}
   nextRoomManager: {fileID: 1642780042}
   uiManager: {fileID: 657830776}
+  inventory: {fileID: 1593175129}
 --- !u!4 &657830778
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,6 +1606,7 @@ MonoBehaviour:
   roomCanva: {fileID: 1178360100}
   nextRoomManager: {fileID: 657830777}
   uiManager: {fileID: 965824582}
+  inventory: {fileID: 1593175129}
   allMonstersData:
   - {fileID: 11400000, guid: 81da9f7d64d4a5e41b0a558465475558, type: 2}
   - {fileID: 11400000, guid: 65c7b13f223481646b616efb966c7adc, type: 2}
@@ -2192,7 +2195,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178360097}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2606,6 +2609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593175128}
   - component: {fileID: 1593175127}
+  - component: {fileID: 1593175129}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2643,6 +2647,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593175129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593175126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47f216dd0b9f82429c3454d406716d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allWeaponData:
+  - {fileID: 11400000, guid: 92276af83f9e89f45a61a4d70e1277f9, type: 2}
+  - {fileID: 11400000, guid: f0c3a116fc456524e8a9fd73d996e854, type: 2}
+  - {fileID: 11400000, guid: f51d91efc38f3af40bc012ed1caedfd4, type: 2}
+  - {fileID: 11400000, guid: fc5c947747f7c10498be76a588357bd2, type: 2}
 --- !u!1 &1609808345
 GameObject:
   m_ObjectHideFlags: 0

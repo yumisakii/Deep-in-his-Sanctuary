@@ -12,14 +12,10 @@ public class WeaponSlotUI : MonoBehaviour
 
     //private string iconName = "Weapon_01";
 
-    public void InitWeapon(string weaponIconName, string spellIconName, string weaponName, Rarity rarity)
+    public void InitWeaponSlotUI(Weapon weapon)
     {
-        Sprite weaponIcon = Resources.Load<Sprite>("Icons/Weapons/" + rarity.ToString() + "/" + weaponIconName);
-        Sprite spellIcon = Resources.Load<Sprite>("Icons/Spell/" + rarity.ToString() + "/" + spellIconName);
-        string newWeaponName = weaponName;
-
-        WeaponIcon.sprite = weaponIcon;
-        SpellIcon.sprite = spellIcon;
-        WeaponName.text = newWeaponName;
+        WeaponIcon.sprite = Resources.Load<Sprite>("Icons/Weapons/" + weapon.Rarity.ToString() + "/" + weapon.WeaponIconName);
+        SpellIcon.sprite = Resources.Load<Sprite>("Icons/Spell/" + weapon.Rarity.ToString() + "/" + weapon.SpellIconName);
+        WeaponName.text = weapon.Name;
     }
 }

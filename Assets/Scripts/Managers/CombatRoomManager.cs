@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class CombatRoomManager : BaseRoomManager
 {
-    [SerializeField] private CombatRoomUIManager uiManager;
+    [SerializeField] private CombatRoomUIManager uiManager = null;
+    [SerializeField] private Inventory inventory = null;
+
     [SerializeField] private List<MonsterData> allMonstersData = new List<MonsterData>();
 
     private int loopNumber = 1;
@@ -12,12 +14,15 @@ public class CombatRoomManager : BaseRoomManager
     private Monster randomMonster1 = null;
     private Monster randomMonster2 = null;
 
+    private Weapon weapon = null;
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        Weapon newWeapon = new Weapon("Weapon_01", "Red", Rarity.Red);
-        uiManager.SetCurrentWeapon(newWeapon);
+        weapon = inventory.GetCurrentWeapon();
+
+        uiManager.SetCurrentWeapon(weapon);
 
         AllMonsters.InitAllMonsters(allMonstersData, loopNumber);
         List<Monster> monsters = AllMonsters.GetCopieAllMonsters();
@@ -53,7 +58,7 @@ public class CombatRoomManager : BaseRoomManager
 
     public void AttackMonster(Monster monster)
     {
-        monster.Health -= 10;
+        monster.Health -= weapon.Damage;
         uiManager.ResetAttackingAndSkillUI();
         uiManager.UpdateMonstersUI();
     }

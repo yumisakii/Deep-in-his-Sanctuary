@@ -6,14 +6,15 @@ public class WeaponUI : MonoBehaviour
 {
     [SerializeField] private Image WeaponIcon;
     [SerializeField] private Image SpellIcon;
+    
+    private Weapon weapon = null;
 
-
-    //private string iconName = "Weapon_01";
-
-    public void InitWeapon(string weaponIconName, string spellIconName, Rarity rarity)
+    public void InitWeapon(Weapon newWeapon)
     {
-        Sprite weaponIcon = Resources.Load<Sprite>("Icons/Weapons/" + rarity.ToString() + "/" + weaponIconName);
-        Sprite spellIcon = Resources.Load<Sprite>("Icons/Spell/" + rarity.ToString() + "/" + spellIconName);
+        weapon = newWeapon;
+
+        Sprite weaponIcon = Resources.Load<Sprite>("Icons/Weapons/" + weapon.Rarity.ToString() + "/" + weapon.WeaponIconName);
+        Sprite spellIcon = Resources.Load<Sprite>("Icons/Spell/" + weapon.Rarity.ToString() + "/" + weapon.SpellIconName);
 
         WeaponIcon.sprite = weaponIcon;
         SpellIcon.sprite = spellIcon;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class AllMonsters
 {
-    [SerializeField] private static List<Monster> allMonsters = new List<Monster>();
+    private static List<Monster> allMonsters = new List<Monster>();
 
     public static void InitAllMonsters(List<MonsterData> dataList, int loopNumber)
     {
