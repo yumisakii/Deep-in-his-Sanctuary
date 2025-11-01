@@ -5,18 +5,25 @@ using UnityEngine;
 public class LootRoomManager : BaseRoomManager
 {
     [SerializeField] private LootRoomUIManager uiManager;
-    [SerializeField] private Inventory inventory;
     private List<Weapon> randomWeapons = new List<Weapon>();
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        List<Weapon> Weapons = inventory.GetCopieInventory();
+        randomWeapons.Clear();        
 
-        for (int i = 0; i < Weapons.Count; i++)
+        if (Inventory.Instance == null)
         {
-            randomWeapons.Add(UsefulFunctions.GetRandomElementAndDelete(Weapons));
+            Debug.LogError("Inventory Singleton is not available! Check execution order.");
+            return;
+        }
+
+        List<Weapon> weapons = Inventory.Instance.GetCopieInventory();
+
+        for (int i = 0; i < 3; i++)
+        {
+            randomWeapons.Add(UsefulFunctions.GetRandomElementAndDelete(weapons));
         }
 
         uiManager.SetRandomWeapons(randomWeapons);

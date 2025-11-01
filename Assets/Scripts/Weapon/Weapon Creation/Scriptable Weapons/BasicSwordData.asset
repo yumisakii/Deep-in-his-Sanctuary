@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicSwordData
   m_EditorClassIdentifier: 
   weaponName: Sword
-  damage: 24
+  damage: 300
   weaponIconName: weapon_01
   spellIconName: Blue
   rarity: 2

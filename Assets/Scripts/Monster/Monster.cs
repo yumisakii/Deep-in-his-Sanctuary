@@ -6,4 +6,6 @@
     public float Health { get; set; } = 100f;
     public float MaxHealth { get; set; } = 100f;
     public float Damage { get; set; } = 10f;
+
+    public bool IsAlive { get; set; } = true;
 }

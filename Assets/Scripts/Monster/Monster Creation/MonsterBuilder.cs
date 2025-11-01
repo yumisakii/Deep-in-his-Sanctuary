@@ -14,6 +14,7 @@ public static class MonsterBuilder
             DangerLevel = data.dangerLevel,
             MaxHealth = data.maxHealth * scalingFactor, // Apply scaling
             Damage = data.damage * scalingFactor,       // Apply scaling
+            IsAlive = data.isAlive
         };
 
         // 2. Set current Health based on the scaled MaxHealth
