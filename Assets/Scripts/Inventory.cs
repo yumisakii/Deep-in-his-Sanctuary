@@ -5,7 +5,10 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance { get; private set; }
 
+    [SerializeField] private Canvas inventoryCanvas = null;
+    [SerializeField] private InventoryUI inventoryUI = null;
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
+
 
     private List<Weapon> inventory = new List<Weapon>();
     private Weapon currentWeapon = null;
@@ -19,16 +22,21 @@ public class Inventory : MonoBehaviour
         }
         Instance = this;
 
+        inventoryCanvas.enabled = false;
+
         foreach (WeaponData data in allWeaponData)
             inventory.Add(WeaponBuilder.BuildWeapon(data));
 
         if (inventory.Count > 0)
             currentWeapon = inventory[0];
+
+        inventoryUI.RefreshInventoryUI(inventory);
     }
 
     public void AddWeapon(Weapon weapon)
     {
         inventory.Add(weapon);
+        inventoryUI.RefreshInventoryUI(inventory);
     }
 
     public Weapon GetCurrentWeapon()
@@ -50,5 +58,11 @@ public class Inventory : MonoBehaviour
     {
         List<Weapon> copieInventory = new List<Weapon>(inventory);        
         return copieInventory;
+    }
+
+    public void SwitchInventoryVisibility()
+    {
+        inventoryCanvas.enabled = !inventoryCanvas.enabled;
+
     }
 }

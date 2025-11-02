@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class LootRoomUIManager : MonoBehaviour
 {    
-    [SerializeField] private List<WeaponSlotUI> weaponsSlotList = new List<WeaponSlotUI>();
+    [SerializeField] private List<LootSlotUI> lootsSlotList = new List<LootSlotUI>();
 
     public void SetRandomWeapons(List<Weapon> randomWeapons)
     {
-        for (int i = 0; i < weaponsSlotList.Count; i++)
+        for (int i = 0; i < lootsSlotList.Count; i++)
         {
-            weaponsSlotList[i].InitWeaponSlotUI(randomWeapons[i]);
+            lootsSlotList[i].InitLootSlotUI(randomWeapons[i]);
         }
     }
+
 }

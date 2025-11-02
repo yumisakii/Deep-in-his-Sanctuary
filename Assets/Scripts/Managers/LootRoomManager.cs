@@ -28,4 +28,11 @@ public class LootRoomManager : BaseRoomManager
 
         uiManager.SetRandomWeapons(randomWeapons);
     }
+
+    public void ItemSelected(Weapon weapon)
+    {
+        Inventory.Instance.AddWeapon(weapon);
+
+        GoToNextRoom();
+    }
 }
