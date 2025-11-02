@@ -5,6 +5,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform contentParent;
     [SerializeField] private GameObject weaponSlotPrefab;
+    [SerializeField] private LootSlotUI currentWeaponSlot;
 
     private List<GameObject> activeSlots = new List<GameObject>();
 
@@ -39,5 +40,10 @@ public class InventoryUI : MonoBehaviour
             Destroy(slot);
         }
         activeSlots.Clear();
+    }
+
+    public void SetCurrentWeaponUI(Weapon weapon)
+    {
+        currentWeaponSlot.InitLootSlotUI(weapon);
     }
 }

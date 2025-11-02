@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
             inventory.Add(WeaponBuilder.BuildWeapon(data));
 
         if (inventory.Count > 0)
-            currentWeapon = inventory[0];
+            SetCurrentWeapon(inventory[0]);
 
         inventoryUI.RefreshInventoryUI(inventory);
     }
@@ -48,6 +48,11 @@ public class Inventory : MonoBehaviour
 
         return currentWeapon;
     }
+    private void SetCurrentWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
+        inventoryUI.SetCurrentWeaponUI(weapon);
+    }
 
     public List<Weapon> GetInventory()
     {
@@ -63,6 +68,5 @@ public class Inventory : MonoBehaviour
     public void SwitchInventoryVisibility()
     {
         inventoryCanvas.enabled = !inventoryCanvas.enabled;
-
     }
 }
