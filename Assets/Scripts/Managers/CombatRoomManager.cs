@@ -4,6 +4,7 @@ using UnityEngine;
 public class CombatRoomManager : BaseRoomManager
 {
     [SerializeField] private CombatRoomUIManager uiManager = null;
+    [SerializeField] private QTEHandler qteHandler = null;
 
     [SerializeField] private List<MonsterData> allMonstersData = new List<MonsterData>();
 
@@ -52,6 +53,8 @@ public class CombatRoomManager : BaseRoomManager
 
         if (isRoomCleared())
             RoomCleared();
+
+        qteHandler.StartQTE();
 
     }
 
