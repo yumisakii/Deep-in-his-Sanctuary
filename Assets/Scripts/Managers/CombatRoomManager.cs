@@ -71,9 +71,6 @@ public class CombatRoomManager : BaseRoomManager
                 return;
         }
 
-        if (PlayerManager.Instance.Player.GetHealth() <= 0)
-            return;
-
         RoomCleared();
     }
 
@@ -107,8 +104,8 @@ public class CombatRoomManager : BaseRoomManager
 
         if (PlayerManager.Instance.Player.GetHealth() <= 0)
             PLayerIsDead();
-
-        isRoomCleared();
+        else
+            isRoomCleared();
     }
 
     private void PLayerIsDead()
