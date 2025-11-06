@@ -1,17 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class LootSlotUI : MonoBehaviour
 {
+    [Header("Manager")]
     [SerializeField] private LootRoomManager lootRoomManager;
 
+    [Header("UI References")]
     [SerializeField] private Image WeaponIcon = null;
     [SerializeField] private Image SpellIcon = null;
     [SerializeField] private TextMeshProUGUI WeaponName = null;
     [SerializeField] private Button button = null;
-
 
     private Weapon weapon = null;
 

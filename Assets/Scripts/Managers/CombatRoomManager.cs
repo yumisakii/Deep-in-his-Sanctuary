@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class CombatRoomManager : BaseRoomManager
 {
-    [SerializeField] private LobbyRoomManager lobby = null;
+    [Header("Special Managers")]
     [SerializeField] private CombatRoomUIManager uiManager = null;
+    [SerializeField] private LobbyRoomManager lobby = null;
     [SerializeField] private HUDManager hudManager = null;
     [SerializeField] private QTEHandler qteHandler = null;
+
+    [Header("Monsters Data")]
     [SerializeField] private List<MonsterData> allMonstersData = new List<MonsterData>();
 
     private int loopNumber = 1;
@@ -50,17 +53,12 @@ public class CombatRoomManager : BaseRoomManager
     {
         currentMonster = monster;
 
-        monster.Health -= weapon.Damage;
-
-        if (monster.Health <= 0)
-            monster.IsAlive = false;
+        monster.TakeDamage(weapon.Damage);
 
         uiManager.ResetAttackingAndSkillUI();
         uiManager.UpdateMonstersUI();
 
         qteHandler.StartQTE();
-
-
     }
 
     private void isRoomCleared()

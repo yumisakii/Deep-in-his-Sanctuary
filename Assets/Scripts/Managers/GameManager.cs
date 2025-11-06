@@ -2,25 +2,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Managers")]
     [SerializeField] LobbyRoomManager lobbyRoomManager;
     [SerializeField] CombatRoomManager combatRoomManager;
     [SerializeField] LootRoomManager lootRoomManager;
-
-
-    private bool inRun = false;
 
     private void Start()
     {
         DisableAll();
         lobbyRoomManager.enabled = true;
-    }
-
-    private void Game()
-    {
-        if (!inRun)
-        {
-            lobbyRoomManager.enabled = true;
-        }
     }
 
     private void DisableAll()

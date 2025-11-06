@@ -1,5 +1,4 @@
-﻿
-public class Weapon
+﻿public class Weapon
 {
     public string Name { get; set; } = "defaultWeapon";
     public float Damage { get; set; } = 10f;

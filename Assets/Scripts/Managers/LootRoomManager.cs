@@ -1,10 +1,11 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LootRoomManager : BaseRoomManager
 {
+    [Header("UI Manager")]
     [SerializeField] private LootRoomUIManager uiManager;
+
     private List<Weapon> randomWeapons = new List<Weapon>();
 
     protected override void OnEnable()

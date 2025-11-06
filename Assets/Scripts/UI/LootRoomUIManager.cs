@@ -1,9 +1,8 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LootRoomUIManager : MonoBehaviour
-{    
+{
     [SerializeField] private List<LootSlotUI> lootsSlotList = new List<LootSlotUI>();
 
     public void SetRandomWeapons(List<Weapon> randomWeapons)
@@ -13,5 +12,4 @@ public class LootRoomUIManager : MonoBehaviour
             lootsSlotList[i].InitLootSlotUI(randomWeapons[i]);
         }
     }
-
 }

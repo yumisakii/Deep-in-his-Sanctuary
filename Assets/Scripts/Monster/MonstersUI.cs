@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class MonsterUI : MonoBehaviour
 {
+    [Header("Manager")]
     [SerializeField] private CombatRoomManager combatRoomManager;
 
+    [Header("UI References")]
     [SerializeField] private Image Icon = null;
     [SerializeField] private Image DeathIcon = null;
     [SerializeField] private TextMeshProUGUI Name = null;
@@ -13,7 +15,6 @@ public class MonsterUI : MonoBehaviour
     [SerializeField] private Button Button = null;
 
     private Monster monster = null;
-    
 
     public void InitMonsterUI(Monster newMonster)
     {
@@ -46,7 +47,6 @@ public class MonsterUI : MonoBehaviour
 
     public void isDead()
     {
-        monster.Health = 0;
         Icon.color = new Color32(65, 65, 65, 255);
         DeathIcon.enabled = true;
         Button.interactable = false;

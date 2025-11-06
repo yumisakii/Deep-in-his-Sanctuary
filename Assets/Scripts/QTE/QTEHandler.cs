@@ -3,11 +3,16 @@ using UnityEngine.UI;
 
 public class QTEHandler : MonoBehaviour
 {
+    [Header("Manager")]
     [SerializeField] private CombatRoomManager combatRoomManager = null;
+
+    [Header("UI References")]
     [SerializeField] private Canvas qteCanvas = null;
     [SerializeField] private RectTransform qteTargetRectTransform = null;
     [SerializeField] private RectTransform qteMarkRectTransform = null;
     [SerializeField] private Button qteButton = null;
+
+    [Header("Parameters")]
     [SerializeField] private float markSpeed = 100f;
 
     private float newQTETargetPosition = 0f;

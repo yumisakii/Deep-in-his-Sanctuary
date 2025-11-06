@@ -3,7 +3,6 @@ public class Player
     private float health = 900;
     private float maxHealth = 900;
 
-
     public void TakeDamage(float damage)
     {
         health -= damage;

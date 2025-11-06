@@ -6,6 +6,16 @@
     public float Health { get; set; } = 100f;
     public float MaxHealth { get; set; } = 100f;
     public float Damage { get; set; } = 10f;
-
     public bool IsAlive { get; set; } = true;
+
+    public void TakeDamage(float amount)
+    {
+        Health -= amount;
+
+        if (Health <= 0 && IsAlive)
+        {
+            Health = 0;
+            IsAlive = false;
+        }
+    }
 }

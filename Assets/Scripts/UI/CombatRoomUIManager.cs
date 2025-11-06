@@ -1,14 +1,9 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.UI;
-using Color = UnityEngine.Color;
 
 public class CombatRoomUIManager : MonoBehaviour
 {
     [SerializeField] private WeaponUI weaponUI = null;
-
     [SerializeField] private List<MonsterUI> monstersUI = new List<MonsterUI>();
 
     public void SetCurrentWeapon(Weapon weapon)
