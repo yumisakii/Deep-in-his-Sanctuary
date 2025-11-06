@@ -1,4 +1,21 @@
 public class Player
 {
-    private float Health { get; set; } = 100;
+    private float health = 100;
+    private float maxHealth = 170;
+
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health < 0) health = 0;
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 }

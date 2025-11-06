@@ -2,8 +2,7 @@ using UnityEngine;
 
 public abstract class BaseRoomManager : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager = null;
-    [SerializeField] private BaseRoomManager roomManager = null;
+    [SerializeField] protected GameManager gameManager = null;
     [SerializeField] private Canvas roomCanva = null;
     [SerializeField] private BaseRoomManager nextRoomManager = null;
 
@@ -19,6 +18,6 @@ public abstract class BaseRoomManager : MonoBehaviour
 
     public void GoToNextRoom()
     {
-        gameManager.ChangeRoom(roomManager, nextRoomManager);
+        gameManager.ChangeRoom(this, nextRoomManager);
     }
 }

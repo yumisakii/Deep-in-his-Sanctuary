@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class QTEHandler : MonoBehaviour
 {
+    [SerializeField] private CombatRoomManager combatRoomManager = null;
     [SerializeField] private Canvas qteCanvas = null;
     [SerializeField] private RectTransform qteTargetRectTransform = null;
     [SerializeField] private RectTransform qteMarkRectTransform = null;
@@ -18,8 +19,6 @@ public class QTEHandler : MonoBehaviour
     private const float MAX_QTE_MARK_POSITION = 490f;
 
     private bool isQTERunning = false;
-
-    private float Timer = 0f;
 
     private void Awake()
     {
@@ -65,18 +64,20 @@ public class QTEHandler : MonoBehaviour
         float bigTarget = (qteBigTargetWidth / 2);
 
         if (qteMarkPosition.x > newQTETargetPosition - smallTarget && qteMarkPosition.x < newQTETargetPosition + smallTarget) // If the mark is in the small targer position
-        {
-            QTESuccess(1);
-        }
+            QTESuccess(2); // Perfect
+        
         else if (qteMarkPosition.x > newQTETargetPosition - bigTarget && qteMarkPosition.x < newQTETargetPosition + bigTarget) // If the mark is in the big targer position
-        {
-            QTESuccess(2);
-        }
+            QTESuccess(1); // Success
+
+        else
+            QTESuccess(0); // Fail
+        
     }
 
     private void QTESuccess(int success)
     {
         EndQTE();
+        combatRoomManager.QTESuccess(success);
     }
 
 }
