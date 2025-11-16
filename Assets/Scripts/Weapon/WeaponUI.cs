@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,7 @@ public class WeaponUI : MonoBehaviour
 {
     [SerializeField] private Image WeaponIcon;
     [SerializeField] private Image SpellIcon;
+    [SerializeField] private List<Image> ElementsIcons = new List<Image>();
     
     private Weapon weapon = null;
 
@@ -12,11 +14,10 @@ public class WeaponUI : MonoBehaviour
     {
         weapon = newWeapon;
 
-        Sprite weaponIcon = Resources.Load<Sprite>("Icons/Weapons/" + weapon.Rarity.ToString() + "/" + weapon.WeaponIconName);
-        Sprite spellIcon = Resources.Load<Sprite>("Icons/Spell/" + weapon.Rarity.ToString() + "/" + weapon.SpellIconName);
+        WeaponIcon.sprite = Resources.Load<Sprite>("Icons/Weapons/" + weapon.WeaponIconName);
+        SpellIcon.sprite = Resources.Load<Sprite>("Icons/Spell/" + weapon.Tier.ToString() + "/" + weapon.SpellIconName);
 
-        WeaponIcon.sprite = weaponIcon;
-        SpellIcon.sprite = spellIcon;
+        UpdateElementGrid(weapon);
     }
 
     public void ScaleUpIcon(string icon)
@@ -31,5 +32,46 @@ public class WeaponUI : MonoBehaviour
     {
         UsefulFunctions.ResetImageScale(WeaponIcon);
         UsefulFunctions.ResetImageScale(SpellIcon);
+    }
+
+    public void UpdateElementGrid(Weapon weapon)
+    {
+        for (int i = 1; i <= 9; i++)
+        {
+            ElementType type = (ElementType)i;
+            bool isActive = weapon.Elements.ContainsKey(type);
+            int stackCount = isActive ? weapon.Elements[type] : 0;
+            UpdateSpecificElement(type, isActive, stackCount);
+        }
+    }
+
+    private void UpdateSpecificElement(ElementType type, bool isActive, int stackCount)
+    {
+        Image imageSlot = GetImageForElement(type);
+        if (isActive)
+        {
+            imageSlot.color = ElementColorMap.GetColor(type);
+            // Show the stack count (for later)
+            // stackText.text = stackCount.ToString();
+        }
+        else
+        {
+            // Not active. Make it dark/transparent.
+            imageSlot.color = new Color(0.2f, 0.2f, 0.2f, 0.5f); // Dark gray
+            // stackText.text = "";
+        }
+    }
+
+    private Image GetImageForElement(ElementType type)
+    {
+        for (int i = 0; i < ElementsIcons.Count; i++)
+        {            
+            if ((ElementType)(i + 1) == type) // +1 to skip 'None'
+            {
+                return ElementsIcons[i];
+            }
+        }
+
+        return null;
     }
 }

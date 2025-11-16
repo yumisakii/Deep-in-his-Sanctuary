@@ -8,7 +8,6 @@ public static class MonsterBuilder
         {
             Name = data.monsterName,
             IconName = data.iconName,
-            DangerLevel = data.dangerLevel,
             MaxHealth = data.maxHealth * scalingFactor,
             Damage = data.damage * scalingFactor,
             IsAlive = data.isAlive

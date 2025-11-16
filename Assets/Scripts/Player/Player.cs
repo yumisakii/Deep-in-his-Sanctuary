@@ -17,4 +17,12 @@ public class Player
     {
         return maxHealth;
     }
+
+    public void Heal(float healValue)
+    {
+        health += healValue;
+
+        if (health > maxHealth)
+            health = maxHealth;
+    }
 }

@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,8 @@ public class QTEHandler : MonoBehaviour
 
     private bool isQTERunning = false;
 
+    private float monsterQTESpeedModifier; // To slow down the mark if the monster is chilled
+
     private void Awake()
     {
         qteCanvas.enabled = false;
@@ -34,7 +37,7 @@ public class QTEHandler : MonoBehaviour
     {
         if (isQTERunning)
         {
-            qteMarkPosition.x += markSpeed * Time.deltaTime;
+            qteMarkPosition.x += (markSpeed * monsterQTESpeedModifier) * Time.deltaTime;
             qteMarkRectTransform.anchoredPosition = qteMarkPosition;
 
             if (qteMarkPosition.x >= MAX_QTE_MARK_POSITION)
@@ -42,7 +45,7 @@ public class QTEHandler : MonoBehaviour
         }
     }
 
-    public void StartQTE()
+    public void StartQTE(Monster monster)
     {
         qteCanvas.enabled = true;
         qteButton.interactable = true;
@@ -51,6 +54,8 @@ public class QTEHandler : MonoBehaviour
         qteTargetRectTransform.anchoredPosition = new Vector2(newQTETargetPosition, 0);
 
         isQTERunning = true;
+
+        monsterQTESpeedModifier = monster.QTESpeed;
     }
 
     private void EndQTE()

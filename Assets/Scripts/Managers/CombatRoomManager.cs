@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor.EditorTools;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -11,8 +12,9 @@ public class CombatRoomManager : BaseRoomManager
     [SerializeField] private HUDManager hudManager = null;
     [SerializeField] private QTEHandler qteHandler = null;
 
-    [Header("Monsters Data")]
+    [Header("Scriptables Objects Data")]
     [SerializeField] private List<MonsterData> allMonstersData = new List<MonsterData>();
+    [SerializeField] private List<StatusEffectData> allStatusEffectData = new List<StatusEffectData>();
 
     private int loopNumber = 1;
 
@@ -39,6 +41,12 @@ public class CombatRoomManager : BaseRoomManager
         uiManager.SetMonsters(randomMonsters);
     }
 
+    public void Awake()
+    {
+        StatusEffectBuilder.InitAllStatusEffects(allStatusEffectData);
+        Debug.Log("Initialized all status effects in CombatRoomManager Awake().");
+    }
+
     public void Attack()
     {
         uiManager.AttackingUI();
@@ -55,10 +63,35 @@ public class CombatRoomManager : BaseRoomManager
 
         monster.TakeDamage(weapon.Damage);
 
+
+        foreach (var pair in weapon.Elements)
+        {
+            ElementType type = pair.Key;
+            int stackCount = pair.Value;
+
+            StatusEffect newStatusEffect = StatusEffectBuilder.BuildStatusEffect(type, weapon.Damage, stackCount);
+
+            if (newStatusEffect != null)
+            {
+                monster.ApplyStatus(newStatusEffect);
+            }
+        }
+
+        ProcessTurnEffectsOnAllMonsters();
+        monster.CheckIfAlive();
+
         uiManager.ResetAttackingAndSkillUI();
         uiManager.UpdateMonstersUI();
 
-        qteHandler.StartQTE();
+
+        if (monster.IsAlive)
+            qteHandler.StartQTE(monster);
+    }
+
+    private void ProcessTurnEffectsOnAllMonsters()
+    {
+        foreach (Monster monster in randomMonsters)
+            monster.ProcessTurnEffects();
     }
 
     private void isRoomCleared()

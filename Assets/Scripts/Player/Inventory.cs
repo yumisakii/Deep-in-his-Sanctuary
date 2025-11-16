@@ -17,9 +17,10 @@ public class Inventory : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         inventoryCanvas.enabled = false;
