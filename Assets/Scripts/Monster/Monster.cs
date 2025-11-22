@@ -27,7 +27,7 @@ public class Monster
         if (Health <= 0 && IsAlive)
             Health = 0;
 
-        Debug.Log($"{Name} took {amount} damges and has {Health} health left.");
+        //Debug.Log($"{Name} took {amount} damges and has {Health} health left.");
     }
 
     public void ApplyStatus(StatusEffect newEffect)

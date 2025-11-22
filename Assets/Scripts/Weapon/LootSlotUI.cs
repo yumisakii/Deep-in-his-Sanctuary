@@ -23,4 +23,11 @@ public class LootSlotUI : MonoBehaviour
         SpellIcon.sprite = Resources.Load<Sprite>("Icons/Spell/" + weapon.Tier.ToString() + "/" + weapon.SpellIconName);
         WeaponName.text = weapon.Name;
     }
+
+    public void ItemSelected()
+    {
+        lootRoomManager.ItemSelected(weapon);
+
+
+    }
 }

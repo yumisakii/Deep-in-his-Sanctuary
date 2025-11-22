@@ -24,13 +24,8 @@ public static class StatusEffectBuilder
 
     private static StatusEffectData GetStatusEffectDataFromDatabase(ElementType type)
     {
-        Debug.Log("Data List Count: " + StatusEffectDataList.Count);
-
         foreach (StatusEffectData data in StatusEffectDataList)
         {
-            Debug.Log("Iterating through StatusEffectDataList...");
-            Debug.Log("Looking for Type: " + type);
-            Debug.Log("Checking StatusEffectData: " + data.Type);
             if (data.Type == type)
                 return data;
         }

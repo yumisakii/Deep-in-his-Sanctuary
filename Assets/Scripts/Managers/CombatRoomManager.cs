@@ -44,7 +44,6 @@ public class CombatRoomManager : BaseRoomManager
     public void Awake()
     {
         StatusEffectBuilder.InitAllStatusEffects(allStatusEffectData);
-        Debug.Log("Initialized all status effects in CombatRoomManager Awake().");
     }
 
     public void Attack()
@@ -86,6 +85,8 @@ public class CombatRoomManager : BaseRoomManager
 
         if (monster.IsAlive)
             qteHandler.StartQTE(monster);
+        else
+            isRoomCleared();
     }
 
     private void ProcessTurnEffectsOnAllMonsters()
@@ -95,7 +96,7 @@ public class CombatRoomManager : BaseRoomManager
     }
 
     private void isRoomCleared()
-    {
+    {        
         foreach (Monster monster in randomMonsters)
         {
             if (monster.IsAlive) // If a monster is alive the Room isn't cleared

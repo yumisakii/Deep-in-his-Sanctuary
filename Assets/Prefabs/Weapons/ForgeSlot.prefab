@@ -367,8 +367,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7629865793871615856}
   - component: {fileID: 6189562687441836082}
+  - component: {fileID: 1464546711903138325}
+  - component: {fileID: 6372459435033744405}
   m_Layer: 5
-  m_Name: LootSlot
+  m_Name: ForgeSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,6 +417,30 @@ MonoBehaviour:
   SpellIcon: {fileID: 5562842785550342463}
   WeaponName: {fileID: 3939208806879363107}
   button: {fileID: 7173374998938740538}
+--- !u!225 &1464546711903138325
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833038654558618757}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6372459435033744405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833038654558618757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50671b69848cfd348b42fbbee22a344d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9133355552291291390
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BrokenAxeData
   m_EditorClassIdentifier: 
   weaponName: Broken Axe
-  damage: 30
+  damage: 300
   weaponIconName: Broken_Axe
   spellIconName: Blue
   tier: 0
