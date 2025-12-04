@@ -12,7 +12,7 @@ public class ForgeSlot : MonoBehaviour, IDropHandler
 
         if (draggedItem != null)
         {
-            manager.OnWeaponDroppedInSlot(slotIndex, draggedItem.WeaponData);
+            manager.OnWeaponDroppedInSlot(slotIndex, draggedItem.Weapon);
             Destroy(draggedItem.gameObject);
         }
     }

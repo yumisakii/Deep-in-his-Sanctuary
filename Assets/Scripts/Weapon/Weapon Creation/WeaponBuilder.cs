@@ -65,6 +65,7 @@ public static class WeaponBuilder
                 return null;
             }
         }
+
         // --- RULE 3: FUSION LOGIC (TIER 1+ -> TIER N+) ---
         else
         {
@@ -75,8 +76,7 @@ public static class WeaponBuilder
         }
 
         // --- POST-FUSION CALCULATIONS ---
-
-        float newDamage = (weaponA.Damage + weaponB.Damage) * 1.15f;
+        float newDamage = (weaponA.Damage + weaponB.Damage) * 1.15f; // Will change that in the future
 
         // --- Naming Logic ---
         string newName;

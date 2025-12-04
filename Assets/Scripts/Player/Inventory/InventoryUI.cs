@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
+    [SerializeField] private Canvas mainCanvas;
     [SerializeField] private Transform contentParent;
     [SerializeField] private GameObject weaponSlotPrefab;
     [SerializeField] private LootSlotUI currentWeaponSlot;
@@ -28,6 +29,11 @@ public class InventoryUI : MonoBehaviour
 
         if (lootSlotUI != null)
             lootSlotUI.InitLootSlotUI(weapon);
+
+        DraggableWeapon draggable = newSlot.GetComponent<DraggableWeapon>();
+        if (draggable == null) draggable = newSlot.AddComponent<DraggableWeapon>();
+
+        draggable.Init(weapon, mainCanvas);
 
         activeSlots.Add(newSlot);
     }

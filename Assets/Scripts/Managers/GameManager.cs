@@ -3,9 +3,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
-    [SerializeField] LobbyRoomManager lobbyRoomManager;
-    [SerializeField] CombatRoomManager combatRoomManager;
-    [SerializeField] LootRoomManager lootRoomManager;
+    [SerializeField] private LobbyRoomManager lobbyRoomManager = null;
+    [SerializeField] private CombatRoomManager combatRoomManager = null;
+    [SerializeField] private LootRoomManager lootRoomManager = null;
+    [SerializeField] private ForgeRoomManager forgeRoomManager = null;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
         combatRoomManager.enabled = false;
         lootRoomManager.enabled = false;
         lobbyRoomManager.enabled = false;
+        forgeRoomManager.enabled = false;
     }
 
     public void ChangeRoom(BaseRoomManager roomManager, BaseRoomManager newRoomManager)

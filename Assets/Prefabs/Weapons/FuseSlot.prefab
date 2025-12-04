@@ -367,10 +367,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7629865793871615856}
   - component: {fileID: 6189562687441836082}
-  - component: {fileID: 334444872605305404}
-  - component: {fileID: 1475484919416699779}
+  - component: {fileID: 6628841850606644196}
   m_Layer: 5
-  m_Name: LootSlot
+  m_Name: FuseSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +392,7 @@ RectTransform:
   - {fileID: 5006700038629493265}
   - {fileID: 6715362111322519496}
   - {fileID: 6526258763110900755}
-  - {fileID: 426580630694864101}
+  - {fileID: 6014355158413199161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -414,24 +413,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootRoomManager: {fileID: 0}
-  elementGridUI: {fileID: 1139505343486778571}
+  elementGridUI: {fileID: 6434688284278963991}
   WeaponIcon: {fileID: 6737485225430118684}
   SpellIcon: {fileID: 5562842785550342463}
   WeaponName: {fileID: 3939208806879363107}
   button: {fileID: 7173374998938740538}
---- !u!225 &334444872605305404
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833038654558618757}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1475484919416699779
+--- !u!114 &6628841850606644196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -440,9 +427,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6833038654558618757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50671b69848cfd348b42fbbee22a344d, type: 3}
+  m_Script: {fileID: 11500000, guid: de2b41d1d1c55e64897b6df1cd7f44f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  slotIndex: 1
 --- !u!1 &9133355552291291390
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +568,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1001 &3159416671446396293
+--- !u!1001 &9026423448060202585
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -676,15 +665,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042cec2c4a07c9247865ab6818b36b48, type: 3}
---- !u!224 &426580630694864101 stripped
+--- !u!224 &6014355158413199161 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3329009411453831520, guid: 042cec2c4a07c9247865ab6818b36b48, type: 3}
-  m_PrefabInstance: {fileID: 3159416671446396293}
+  m_PrefabInstance: {fileID: 9026423448060202585}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1139505343486778571 stripped
+--- !u!114 &6434688284278963991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2596561218281025870, guid: 042cec2c4a07c9247865ab6818b36b48, type: 3}
-  m_PrefabInstance: {fileID: 3159416671446396293}
+  m_PrefabInstance: {fileID: 9026423448060202585}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

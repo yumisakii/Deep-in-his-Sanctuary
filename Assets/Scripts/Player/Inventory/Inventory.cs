@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventoryUI inventoryUI = null;
     [SerializeField] private List<WeaponData> allWeaponData = new List<WeaponData>();
 
-
+    private List<Weapon> allWeapons = new List<Weapon>();
     private List<Weapon> inventory = new List<Weapon>();
     private Weapon currentWeapon = null;
 
@@ -26,7 +26,9 @@ public class Inventory : MonoBehaviour
         inventoryCanvas.enabled = false;
 
         foreach (WeaponData data in allWeaponData)
-            inventory.Add(WeaponBuilder.BuildWeapon(data));
+            allWeapons.Add(WeaponBuilder.BuildWeapon(data));
+
+        inventory.Add(WeaponBuilder.BuildWeapon(allWeaponData[0]));
 
         if (inventory.Count > 0)
             SetCurrentWeapon(inventory[0]);
@@ -40,6 +42,19 @@ public class Inventory : MonoBehaviour
         inventoryUI.RefreshInventoryUI(inventory);
     }
 
+    public void RemoveWeapon(Weapon weapon)
+    {
+        if (inventory.Contains(weapon))
+        {
+            inventory.Remove(weapon);
+            inventoryUI.RefreshInventoryUI(inventory);
+            if (currentWeapon == weapon)
+            {
+                SetCurrentWeapon(inventory.Count > 0 ? inventory[0] : null);
+            }
+        }
+    }
+
     public Weapon GetCurrentWeapon()
     {
         if (currentWeapon == null && inventory.Count > 0)
@@ -49,7 +64,7 @@ public class Inventory : MonoBehaviour
 
         return currentWeapon;
     }
-    private void SetCurrentWeapon(Weapon weapon)
+    public void SetCurrentWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
         inventoryUI.SetCurrentWeaponUI(weapon);
@@ -60,10 +75,10 @@ public class Inventory : MonoBehaviour
         return inventory;
     }
 
-    public List<Weapon> GetCopieInventory()
+    public List<Weapon> GetCopieAllWeapons()
     {
-        List<Weapon> copieInventory = new List<Weapon>(inventory);        
-        return copieInventory;
+        List<Weapon> copieData = new List<Weapon>(allWeapons); 
+        return copieData;
     }
 
     public void SwitchInventoryVisibility()

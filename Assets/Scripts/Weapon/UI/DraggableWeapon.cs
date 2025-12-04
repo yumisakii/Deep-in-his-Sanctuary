@@ -5,16 +5,16 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup))]
 public class DraggableWeapon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Weapon WeaponData { get; private set; }
+    public Weapon Weapon { get; private set; }
 
     private Transform originalParent;
     private Vector3 originalPosition;
-    private CanvasGroup canvasGroup;
     private Canvas mainCanvas;
+    private CanvasGroup canvasGroup;
 
     public void Init(Weapon weapon, Canvas canvas)
     {
-        WeaponData = weapon;
+        Weapon = weapon;
         mainCanvas = canvas;
     }
 

@@ -20,7 +20,7 @@ public class LootRoomManager : BaseRoomManager
             return;
         }
 
-        List<Weapon> weapons = Inventory.Instance.GetCopieInventory();
+        List<Weapon> weapons = Inventory.Instance.GetCopieAllWeapons();
 
         for (int i = 0; i < 3; i++)
         {
