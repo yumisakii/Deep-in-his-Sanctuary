@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class WeaponBuilder
@@ -159,5 +161,35 @@ public static class WeaponBuilder
                 Debug.LogError($"Invalid Sub-Element for conversion: {subElement}");
                 return ElementType.None;
         }
+    }
+
+    public static Weapon BuildWeaponFromSave(WeaponSaveData saveData)
+    {
+        var elements = new Dictionary<ElementType, int>();
+        foreach (var stack in saveData.elements)
+        {
+            if (elements.ContainsKey(stack.type))
+                elements[stack.type] += stack.count;
+            else
+                elements.Add(stack.type, stack.count);
+        }
+
+        Skill skill = new Skill
+        {
+            Name = saveData.skillName,
+            Damage = saveData.skillDamage,
+            IsAOE = saveData.skillIsAOE
+        };
+
+        return new Weapon(
+            saveData.name,
+            saveData.damage,
+            saveData.fusionTier,
+            (Tiers)saveData.rarity,
+            skill,
+            elements,
+            saveData.iconName,
+            saveData.spellIconName
+        );
     }
 }

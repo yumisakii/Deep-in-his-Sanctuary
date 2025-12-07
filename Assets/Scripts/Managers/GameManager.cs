@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     {
         DisableAll();
         lobbyRoomManager.enabled = true;
+        LoadData();
     }
 
     private void DisableAll()
@@ -24,7 +25,27 @@ public class GameManager : MonoBehaviour
 
     public void ChangeRoom(BaseRoomManager roomManager, BaseRoomManager newRoomManager)
     {
+        SaveManager.SaveGame();
         roomManager.enabled = false;
         newRoomManager.enabled = true;
+    }
+
+    private void LoadData()
+    {
+        GameSaveData data = SaveManager.LoadGame();
+        if (data != null && data.isRunActive)
+        {
+            // Restore Health
+            // Restore Inventory:
+            foreach (var wData in data.inventory)
+            {
+                Weapon w = WeaponBuilder.BuildWeaponFromSave(wData);
+                Inventory.Instance.AddWeapon(w);
+            }
+        }
+        else
+        {
+            // Start New Run
+        }
     }
 }
