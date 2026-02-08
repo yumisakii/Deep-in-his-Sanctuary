@@ -4,9 +4,9 @@
 
 //class BossCombatFunc
 //{
-//    public static void Attack(Boss boss, Weapon weapon)
+//    public static void Attack(Boss boss, Weapon currentWeapon)
 //    {
-//        boss.Hp -= weapon.Damage;
+//        boss.Hp -= currentWeapon.Damage;
 //        Console.WriteLine($"You attacked {boss.Name} for {Run.currentWeapon.Damage} damage.\n");
 //    }
 

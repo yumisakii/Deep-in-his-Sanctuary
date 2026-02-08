@@ -13,14 +13,12 @@ public static class SaveManager
         // 1. Save Meta Data (You'll need a place to store this, maybe GameManager?)
         // data.totalRunsPlayed = ... 
 
-        // 2. Save Player Stats
         if (PlayerManager.Instance != null && PlayerManager.Instance.Player != null)
-        {
+        {            
             data.currentHealth = PlayerManager.Instance.Player.GetHealth();
             data.currentMaxHealth = PlayerManager.Instance.Player.GetMaxHealth();
         }
 
-        // 3. Save Inventory (The Tricky Part)
         if (Inventory.Instance != null)
         {
             data.inventory = ConvertInventoryToSaveData(Inventory.Instance.GetInventory());
@@ -48,7 +46,7 @@ public static class SaveManager
         }
         else
         {
-            return null; // No save found
+            return null;
         }
     }
 

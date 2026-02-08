@@ -4,15 +4,22 @@ using UnityEngine;
 public class CombatRoomUIManager : MonoBehaviour
 {
     [SerializeField] private WeaponUI weaponUI = null;
-    [SerializeField] private List<MonsterUI> monstersUI = new List<MonsterUI>();
+    
+    private List<MonsterUI> monstersUI = new List<MonsterUI>();
 
     public void SetCurrentWeapon(Weapon weapon)
     {
         weaponUI.InitWeapon(weapon);
     }
 
-    public void SetMonsters(List<Monster> monsters)
+    public void SetMonsters(List<Monster> monsters, List<GameObject> slots)
     {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            MonsterUI monsterUI = slots[i].GetComponent<MonsterUI>();
+            monstersUI.Add(monsterUI);
+        }
+
         for (int i = 0; i < monstersUI.Count; i++)
         {
             monstersUI[i].InitMonsterUI(monsters[i]);

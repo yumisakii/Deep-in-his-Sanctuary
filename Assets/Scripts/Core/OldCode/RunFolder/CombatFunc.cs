@@ -4,9 +4,9 @@
 
 //class CombatFunc
 //{
-//    public static void Attack(Monster monster, Weapon weapon)
+//    public static void Attack(Monster monster, Weapon currentWeapon)
 //    {
-//        monster.Hp -= weapon.Damage;
+//        monster.Hp -= currentWeapon.Damage;
 //        Console.WriteLine($"You attacked the {monster.Name} for {Run.currentWeapon.Damage} damage.\n");
 //    }
 

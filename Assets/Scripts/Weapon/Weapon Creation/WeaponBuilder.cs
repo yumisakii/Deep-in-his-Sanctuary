@@ -112,7 +112,7 @@ public static class WeaponBuilder
         // --- Rarity (Placeholder) ---
         Tiers newTierEnum = weaponA.Tier;
 
-        // --- Create the final, new weapon ---
+        // --- Create the final, new currentWeapon ---
         return new Weapon(
             newName,
             newDamage,

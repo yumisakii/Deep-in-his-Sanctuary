@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Inventory : MonoBehaviour
     private List<Weapon> allWeapons = new List<Weapon>();
     private List<Weapon> inventory = new List<Weapon>();
     private Weapon currentWeapon = null;
+
+    public UnityEvent onChangeCurrentWeaponTriggerd;
 
     private void Awake()
     {
@@ -28,7 +31,8 @@ public class Inventory : MonoBehaviour
         foreach (WeaponData data in allWeaponData)
             allWeapons.Add(WeaponBuilder.BuildWeapon(data));
 
-        inventory.Add(WeaponBuilder.BuildWeapon(allWeaponData[0]));
+        if (inventory.Count == 0)
+            inventory.Add(WeaponBuilder.BuildWeapon(allWeaponData[0]));
 
         if (inventory.Count > 0)
             SetCurrentWeapon(inventory[0]);
@@ -68,6 +72,7 @@ public class Inventory : MonoBehaviour
     {
         currentWeapon = weapon;
         inventoryUI.SetCurrentWeaponUI(weapon);
+        onChangeCurrentWeaponTriggerd?.Invoke();
     }
 
     public List<Weapon> GetInventory()

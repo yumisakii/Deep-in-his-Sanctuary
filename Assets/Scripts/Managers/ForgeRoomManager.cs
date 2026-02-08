@@ -15,6 +15,9 @@ public class ForgeRoomManager : BaseRoomManager
 
     private Weapon fusedWeapon = null;
 
+
+    public override RoomType Type => RoomType.Forge;
+
     protected override void OnEnable()
     {
         base.OnEnable();

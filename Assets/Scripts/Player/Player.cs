@@ -1,3 +1,6 @@
+using UnityEngine;
+using System.Diagnostics;
+
 public class Player
 {
     private float health = 900;

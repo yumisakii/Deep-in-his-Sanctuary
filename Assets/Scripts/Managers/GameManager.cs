@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,9 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LootRoomManager lootRoomManager = null;
     [SerializeField] private ForgeRoomManager forgeRoomManager = null;
 
+    private int loopNumber = 1; 
+
     private void Start()
     {
         DisableAll();
+
         lobbyRoomManager.enabled = true;
         LoadData();
     }
@@ -30,13 +34,49 @@ public class GameManager : MonoBehaviour
         newRoomManager.enabled = true;
     }
 
+    public void ChangeRoom2(BaseRoomManager currentRoomManager)
+    {
+        BaseRoomManager newRoomManager = null;
+
+        if (currentRoomManager.Type == RoomType.Combat)
+        {
+            if (combatRoomManager.IsBossRoom())
+                combatRoomManager.SetBossRoom(false);
+
+            newRoomManager = lootRoomManager;
+            loopNumber++;
+        }
+
+        else if (currentRoomManager.Type == RoomType.Loot)
+        {
+            if (loopNumber % 3 == 0)
+                newRoomManager = forgeRoomManager;
+            else
+                newRoomManager = combatRoomManager;
+        }
+
+        else if (currentRoomManager.Type == RoomType.Forge)
+        {
+            if (loopNumber % 9 == 0)
+            {
+                newRoomManager = combatRoomManager;
+                combatRoomManager.SetBossRoom(true);
+            }
+            else
+                newRoomManager = combatRoomManager;
+        }
+
+
+
+        currentRoomManager.enabled = false;
+        newRoomManager.enabled = true;
+    }
+
     private void LoadData()
     {
         GameSaveData data = SaveManager.LoadGame();
         if (data != null && data.isRunActive)
         {
-            // Restore Health
-            // Restore Inventory:
             foreach (var wData in data.inventory)
             {
                 Weapon w = WeaponBuilder.BuildWeaponFromSave(wData);
@@ -45,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Start New Run
+
         }
     }
 }

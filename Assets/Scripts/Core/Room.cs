@@ -1,5 +1,6 @@
-public enum Room
+public enum RoomType
 {
+    Base,
     Lobby,
     Combat,
     Loot,

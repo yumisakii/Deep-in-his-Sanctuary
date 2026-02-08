@@ -8,6 +8,8 @@ public class LootRoomManager : BaseRoomManager
 
     private List<Weapon> randomWeapons = new List<Weapon>();
 
+    public override RoomType Type => RoomType.Loot;
+
     protected override void OnEnable()
     {
         base.OnEnable();

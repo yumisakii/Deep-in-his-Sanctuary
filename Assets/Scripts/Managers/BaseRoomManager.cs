@@ -19,6 +19,8 @@ public abstract class BaseRoomManager : MonoBehaviour
         roomCanva.enabled = false;
     }
 
+    public virtual RoomType Type => RoomType.Base;
+
     public void GoToNextRoom()
     {
         gameManager.ChangeRoom(this, nextRoomManager);

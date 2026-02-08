@@ -39,7 +39,7 @@
 
 //        int choice1 = UF.MakeChoice(Run.weapons.Count);
 //        Weapon chosenWeapon1 = Run.weapons[choice1 - 1];
-//        Console.Write($"You choose the weapon '{chosenWeapon1.Name}' and ");
+//        Console.Write($"You choose the currentWeapon '{chosenWeapon1.Name}' and ");
 
 //        int choice2 = UF.MakeChoice(Run.weapons.Count);
 //        Weapon chosenWeapon2 = Run.weapons[choice2 - 1];
